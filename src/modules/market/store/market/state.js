@@ -1,5 +1,6 @@
 export default () => ({
     products: [],
     cart: [],
-    totalPrice: null
+    totalPrice: null,
+    categories: []
 })

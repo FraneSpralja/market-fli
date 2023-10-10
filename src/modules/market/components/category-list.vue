@@ -1,6 +1,9 @@
 <template>
     <div class="category-list">
         <h3 class="category-list__title">Lista de productos por categoria</h3>
+        <category-filter 
+        :product="getProducts"
+        />
         <div class="row">
             <product-card 
             v-for="item in getProducts" :key="item.id"
@@ -22,14 +25,16 @@
 </template>
 
 <script>
-import productCard from './product-card.vue'
-import productModal from './product-modal.vue'
+import productCard from './product-card'
+import productModal from './product-modal'
+import categoryFilter from './category-filter';
 
 import { computed, ref } from 'vue';
 import { useStore } from 'vuex'
 
 export default {
     components: {
+        categoryFilter,
         productCard,
         productModal
     },
@@ -46,7 +51,7 @@ export default {
                 product.value = item
             },
             closeModal: () => modal.value = false,
-            getProducts: computed(() => store.getters['market/loadProductsByCategory'])
+            getProducts: computed(() => store.getters['market/loadProducts'])
         }
     }
 }

@@ -48,3 +48,7 @@ export const lessOneProduct = (state, id) => {
         state.cart = [ ...newCart ]
     }
 }
+
+export const productsByCategory = (state, data) => {
+    state.products = [ ...data ]
+}

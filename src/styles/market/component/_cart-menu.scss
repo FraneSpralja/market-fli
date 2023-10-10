@@ -15,7 +15,9 @@
     }
 
     &__card {
+        background: #fbfbfb;
         border-bottom: 1px solid #f1f1f1;
+        border-radius: rem(4);
     }
 
     &__img {
@@ -47,7 +49,7 @@
 
     &__title,
     &__price {
-        @include fontSize('tag-card');
+        @include fontSize('x-small');
         @include fontWeight('medium');
         margin-bottom: 0;
     }
@@ -57,10 +59,10 @@
             background: transparent;
             border: none;
             padding: rem(1) rem(2);
-            @include fontSize('tag-card');
+            @include fontSize('x-small');
             
             @include Media('md') {
-                @include fontSize('t-card')
+                @include fontSize('medium')
             }
 
             &.btn-plus {
@@ -79,7 +81,7 @@
     }
 
     &__checkout {
-        @include fontSize('p');
+        @include fontSize('normal');
         background: #6bef6b;
         border: 1px solid #39a039
     }

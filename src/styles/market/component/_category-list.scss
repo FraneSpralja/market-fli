@@ -2,7 +2,7 @@
 
 .category-list {
     &__title {
-        @include fontSize('h3');
+        @include fontSize('lg');
         @include fontWeight('medium');
     }
 }

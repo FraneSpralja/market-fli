@@ -17,12 +17,12 @@
     }
 
     &__title {
-        @include fontSize('t-card');
+        @include fontSize('medium');
         @include fontWeight('medium');
     }
 
     &__description {
-        @include fontSize('p-card')
+        @include fontSize('small')
     }
 
     .product-img {
@@ -34,24 +34,24 @@
 
     .product-category {
         border-radius: rem(4);
-        background-color: rgb(184, 243, 184);
-        @include fontSize('tag-card');
+        background-color: #b8f3b8;
+        @include fontSize('x-small');
         @include fontWeight('bold');
     }
 
     &__price {
-        color: rgb(12, 12, 119);
+        color: #0c0c77;
         font-size: rem(25);
         font-weight: 600;
     }
 
     .btn-action {
-        background-color: rgb(183, 183, 246);
-        border: 1px solid rgb(55, 55, 236);
-        @include fontSize('p');
+        background-color: #b7b7f6;
+        border: 1px solid #3737ec;
+        @include fontSize('normal');
         
         &:hover {
-            background-color: rgb(136, 136, 241);
+            background-color: #8888f1;
         }
     }
 

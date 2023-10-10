@@ -10,12 +10,14 @@ $font_weight: (
 );
 
 $font_size: (
-    'h1': rem(30),
-    'h3': rem(24),
-    't-card': rem(20),
-    'p-card': rem(15),
-    'tag-card': rem(13),
-    'p': rem(16),
+    'xx-small': rem(10),
+    'x-small': rem(13),
+    'small': rem(15),
+    'normal': rem(16),
+    'medium': rem(20),
+    'lg': rem(24),
+    'xl': rem(30),
+    'xxl': rem(32),
 );
 
 @mixin fontWeight($weight) {
