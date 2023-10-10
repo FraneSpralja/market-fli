@@ -1,0 +1,40 @@
+@use '../../functions/rem' as *;
+@use '../../utils/index' as *;
+
+#app .navbar {
+    background-color: #fff;
+    box-shadow: 0 rem(1) rem(4) rgba(0, 0, 0, 0.1);
+    height: 42px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+
+    &-cart,
+    &-sign,
+    &-logout {
+        background-color: transparent;
+        border: none;
+    }
+
+    &-cart {
+        margin-inline-start: auto;
+        margin-inline-end: rem(7);
+        position: relative;
+
+        #cart-num {
+            align-items: center;
+            background-color: #559555;
+            border-radius: 50%;
+            color: #fff;
+            font-size: 10px;
+            font-weight: bold;
+            display: flex;
+            height: 15px;
+            justify-content: center;
+            position: absolute;
+            right: -3px;
+            top: 12px;
+            width: 15px;
+        }
+    }
+}

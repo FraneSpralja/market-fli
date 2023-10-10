@@ -1,0 +1,35 @@
+@use '../../functions/rem' as *;
+@use '../../utils/position-center' as *;
+
+.modal-fade {
+    background-color: rgba(0, 0, 0, .7);
+    
+    //Position modal
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    .product-modal {
+        background-color: #ffffff;
+        border-radius: rem(7);
+        max-height: 95vh;
+        overflow-y: auto;
+        padding: rem(18);
+        @include positionCenter;
+
+        .close-modal {
+            background-color: transparent;
+            border: none;
+        }
+
+        &__image {
+
+            img {
+                height: 150px;
+                width: auto;
+            }
+        }
+    }
+}

@@ -1,0 +1,18 @@
+@use '../utils/Tipography' as *;
+@forward './component/action-btn';
+@forward './component/category-list';
+@forward './component/cart-menu.scss';
+@forward './component/featured-auction';
+@forward './component/navbar';
+@forward './component/product-card';
+@forward './component/product-modal';
+@forward './layout/market-layout';
+
+html {
+    font-family: $font-base;
+}
+
+.main-title {
+    @include fontSize('h1');
+    @include fontWeight('bold');
+}

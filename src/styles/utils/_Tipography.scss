@@ -1,0 +1,27 @@
+@use '../functions/rem' as *;
+
+$font-base: 'Nunito', sans-serif;
+
+$font_weight: (
+    'x-light': 200,
+    'light': 300,
+    'medium': 500,
+    'bold': 700
+);
+
+$font_size: (
+    'h1': rem(30),
+    'h3': rem(24),
+    't-card': rem(20),
+    'p-card': rem(15),
+    'tag-card': rem(13),
+    'p': rem(16),
+);
+
+@mixin fontWeight($weight) {
+    font-weight: map-get($font_weight, $weight);
+}
+
+@mixin fontSize($size) {
+    font-size: map-get($font_size, $size);
+}

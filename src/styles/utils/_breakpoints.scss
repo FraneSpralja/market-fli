@@ -1,0 +1,15 @@
+@use '../functions/rem' as *;
+
+$breakpoints: (
+    'sm': rem(565),
+    'md': rem(768),
+    'lg': rem(996),
+    'xl': rem(1200),
+    'xxl': rem(1440),
+);
+
+@mixin Media($size){
+    @media(min-width: map-get($breakpoints, $size)) {
+        @content;
+    }
+}

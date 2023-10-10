@@ -1,0 +1,61 @@
+@use '../../functions/rem' as *;
+@use '../../utils/breakpoints' as *;
+@use '../../utils/Tipography' as *;
+
+.product-card {
+    border: 1px solid #efefef;
+    border-radius: rem(8);
+    box-sizing: content-box;
+    display: grid;
+    grid-template-rows: rem(307) rem(200) 1fr;
+    min-height: rem(488);
+    transition: border .3s ease-in-out;
+    
+    &__header {
+        display: grid;
+        grid-template-rows: 1fr;
+    }
+
+    &__title {
+        @include fontSize('t-card');
+        @include fontWeight('medium');
+    }
+
+    &__description {
+        @include fontSize('p-card')
+    }
+
+    .product-img {
+        cursor: pointer;
+        height: rem(150);
+        width: auto;
+        max-width: 95%;
+    }
+
+    .product-category {
+        border-radius: rem(4);
+        background-color: rgb(184, 243, 184);
+        @include fontSize('tag-card');
+        @include fontWeight('bold');
+    }
+
+    &__price {
+        color: rgb(12, 12, 119);
+        font-size: rem(25);
+        font-weight: 600;
+    }
+
+    .btn-action {
+        background-color: rgb(183, 183, 246);
+        border: 1px solid rgb(55, 55, 236);
+        @include fontSize('p');
+        
+        &:hover {
+            background-color: rgb(136, 136, 241);
+        }
+    }
+
+    &:has(.product-img__hover) {
+        border: 1px solid #076936;
+    }
+}

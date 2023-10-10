@@ -1,0 +1,86 @@
+@use '../../functions/rem' as *;
+@use '../../utils/index' as *;
+
+.cart-menu {
+    background-color: #f9f9f9;
+    box-shadow: -1px 5px 4px #ccc;
+    height: 100vh;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    transform: translateX(100%);
+
+    &.active {
+        transform: translateX(0);
+    }
+
+    &__card {
+        border-bottom: 1px solid #f1f1f1;
+    }
+
+    &__img {
+        position: relative;
+        & > img {
+            height: rem(30);
+            width: auto;
+            max-width: rem(36);
+        }
+    }
+
+    &__number {
+        align-items: center;
+        background-color: #fff;
+        border: 1px solid #191919;
+        border-radius: 50%;
+        display: flex;
+        font-size: rem(10);
+        height: rem(15);
+        justify-content: center;
+        top: 50%;
+        right: 0;
+        position: absolute;
+        transform: translateY(-50%);
+        width: rem(15);
+
+        @include fontWeight('medium');
+    }
+
+    &__title,
+    &__price {
+        @include fontSize('tag-card');
+        @include fontWeight('medium');
+        margin-bottom: 0;
+    }
+
+    &__actions-btn {
+        button.btn-action {
+            background: transparent;
+            border: none;
+            padding: rem(1) rem(2);
+            @include fontSize('tag-card');
+            
+            @include Media('md') {
+                @include fontSize('t-card')
+            }
+
+            &.btn-plus {
+                color: #38a5e4;
+            }
+
+            &.btn-minus {
+                color: #e4de38;
+            }
+
+            &.btn-delete {
+                color: #eb6464;
+                font-size: rem(14);
+            }
+        }
+    }
+
+    &__checkout {
+        @include fontSize('p');
+        background: #6bef6b;
+        border: 1px solid #39a039
+    }
+}
