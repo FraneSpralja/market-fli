@@ -52,3 +52,15 @@ export const lessOneProduct = (state, id) => {
 export const productsByCategory = (state, data) => {
     state.products = [ ...data ]
 }
+
+export const randomProducts = (state, data) => {
+    const productsIndex = data.map( (id) => {
+        return state.products.findIndex((item) => item.id === id)
+    } )
+
+    const featured = productsIndex.map( (index) => {
+        return state.products[index]
+    } )
+    
+    state.featured = [ ...featured ]
+}

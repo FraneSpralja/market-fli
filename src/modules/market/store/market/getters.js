@@ -20,3 +20,7 @@ export const selectItemByCategory = (state) => {
         .filter((item, index) => categories
             .indexOf(item) === index )
 }
+
+export const featuredProducts = (state) => {
+    return state.featured
+}

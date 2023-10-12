@@ -1,0 +1,15 @@
+@use '../../utils/' as *;
+@use '../../functions/rem' as *;
+
+.category-filter {
+    appearance: none;
+    background-image: url('/src/assets/img/svg/filter-solid.svg');
+    background-position: left rem(5);
+    background-repeat: no-repeat;
+    background-size: rem(15);
+    border: none;
+    border-bottom: 1px solid #ccc;
+    min-width: rem(150);
+    padding-block-end: rem(4);
+    padding-inline-start: rem(20);
+}

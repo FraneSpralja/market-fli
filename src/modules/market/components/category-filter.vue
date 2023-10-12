@@ -1,7 +1,8 @@
 <template>
     <select 
     name="category" 
-    id="category"
+    id="category-filter"
+    class="category-filter mb-3"
     @change="getProductsByCategory"
     >
         <option selected disabled>Category select</option>

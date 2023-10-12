@@ -1,6 +1,7 @@
 @use '../utils/Tipography' as *;
 @forward './component/action-btn';
 @forward './component/category-list';
+@forward './component/category-filter';
 @forward './component/cart-menu.scss';
 @forward './component/featured-auction';
 @forward './component/navbar';

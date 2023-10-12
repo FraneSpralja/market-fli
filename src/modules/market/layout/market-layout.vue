@@ -31,11 +31,18 @@
         },
         setup() {
             const store = useStore()
+            
             const products = () => {
                 store.dispatch('market/getProducts')
             }
 
+            const getFeaturedProducts = () => {
+                store.dispatch('market/getRandomProducts')
+            }
+
             products()
+            getFeaturedProducts()
+
         }
     }
 </script>

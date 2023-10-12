@@ -1,6 +1,5 @@
 <template>
     <div class="category-list">
-        <h3 class="category-list__title">Lista de productos por categoria</h3>
         <category-filter 
         :product="getProducts"
         />

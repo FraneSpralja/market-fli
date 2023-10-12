@@ -19,18 +19,16 @@ import { ref } from 'vue';
             </button>
 
             <button 
-            v-if="!user"
-            @click="logOut"
-            class="navbar-sign">
+            class="navbar-sign"
+            @click="openUserMenu">
                 <i class="fa-solid fa-user"></i>
             </button>
             
-            <button 
-            v-else
-            @click="logOut"
-            class="navbar-logout">
-                <i class="fa-solid fa-right-to-bracket"></i>
-            </button>
+            <div v-if="userMenu" class="user-menu">
+                <router-link :to="{ name: 'user-form', query: { user: `login_${Date.now()}` } }">Login</router-link>
+                <router-link :to="{ name: 'user-form', query: { user: `new-user${Date.now()}` } }">Register</router-link>
+            </div>
+            
         </div>
         
         <cart-menu 
@@ -51,13 +49,13 @@ import cartMenu from './cart-menu';
         },
         setup() {
             const store = useStore()
-            const user = ref(false)
+            const userMenu = ref(false)
             const showCart = ref(false)
 
             return {
-                user,
+                userMenu,
                 showCart,
-                logOut: () => user.value = !user.value,
+                openUserMenu: () => userMenu.value = !userMenu.value,
                 getCart: computed(() => store.getters['market/loadCartProducts']),
                 showCartMenu: () => showCart.value = !showCart.value,
                 hiddeCart: () => showCart.value = false,
