@@ -17,15 +17,15 @@
     &__card {
         background: #fbfbfb;
         border-bottom: 1px solid #f1f1f1;
-        border-radius: rem(4);
+        border-radius: to-rem(4);
     }
 
     &__img {
         position: relative;
         & > img {
-            height: rem(30);
+            height: to-rem(30);
             width: auto;
-            max-width: rem(36);
+            max-width: to-rem(36);
         }
     }
 
@@ -35,14 +35,14 @@
         border: 1px solid #191919;
         border-radius: 50%;
         display: flex;
-        font-size: rem(10);
-        height: rem(15);
+        font-size: to-rem(10);
+        height: to-rem(15);
         justify-content: center;
         top: 50%;
         right: 0;
         position: absolute;
         transform: translateY(-50%);
-        width: rem(15);
+        width: to-rem(15);
 
         @include fontWeight('medium');
     }
@@ -58,7 +58,7 @@
         button.btn-action {
             background: transparent;
             border: none;
-            padding: rem(1) rem(2);
+            padding: to-rem(1) to-rem(2);
             @include fontSize('x-small');
             
             @include Media('md') {
@@ -75,7 +75,7 @@
 
             &.btn-delete {
                 color: #eb6464;
-                font-size: rem(14);
+                font-size: to-rem(14);
             }
         }
     }

@@ -5,11 +5,11 @@
         <h1 class="main-title">portada inicial del market</h1>
         <div class="row">
 
-            <div class="col-12 col-lg-3">
+            <div class="col-12">
                 <auction />
             </div>
 
-            <div class="col-12 col-lg-9">
+            <div class="col-12">
                 <router-view></router-view>
             </div>
 

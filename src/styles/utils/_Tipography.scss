@@ -10,14 +10,15 @@ $font_weight: (
 );
 
 $font_size: (
-    'xx-small': rem(10),
-    'x-small': rem(13),
-    'small': rem(15),
-    'normal': rem(16),
-    'medium': rem(20),
-    'lg': rem(24),
-    'xl': rem(30),
-    'xxl': rem(32),
+    'xx-small': to-rem(10),
+    'x-small': to-rem(13),
+    'small': to-rem(15),
+    'normal': to-rem(16),
+    'normal-bg': to-rem(18),
+    'medium': to-rem(20),
+    'lg': to-rem(24),
+    'xl': to-rem(30),
+    'xxl': to-rem(32),
 );
 
 @mixin fontWeight($weight) {

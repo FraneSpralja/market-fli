@@ -4,11 +4,11 @@
 
 .product-card {
     border: 1px solid #efefef;
-    border-radius: rem(8);
+    border-radius: to-rem(8);
     box-sizing: content-box;
     display: grid;
-    grid-template-rows: rem(307) rem(200) 1fr;
-    min-height: rem(488);
+    grid-template-rows: to-rem(307) to-rem(200) 1fr;
+    min-height: to-rem(488);
     transition: border .3s ease-in-out;
     
     &__header {
@@ -27,13 +27,13 @@
 
     .product-img {
         cursor: pointer;
-        height: rem(150);
+        height: to-rem(150);
         width: auto;
         max-width: 95%;
     }
 
     .product-category {
-        border-radius: rem(4);
+        border-radius: to-rem(4);
         background-color: #b8f3b8;
         @include fontSize('x-small');
         @include fontWeight('bold');
@@ -41,7 +41,7 @@
 
     &__price {
         color: #0c0c77;
-        font-size: rem(25);
+        font-size: to-rem(25);
         font-weight: 600;
     }
 

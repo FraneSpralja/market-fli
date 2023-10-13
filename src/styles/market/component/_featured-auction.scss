@@ -1,12 +1,115 @@
-@use '../../utils/Tipography' as *;
+@use '../../utils/index' as *;
+@use '../../functions/rem' as *;
 
 .featured-auction {
+
+    .container {
+        overflow: hidden
+    }
+    
     &__title {
         @include fontSize('lg');
         @include fontWeight('medium')
     }
-
+    
     &__row {
-        overflow-x: auto;
+        display: flex;
+        flex-wrap: nowrap;
+        column-gap: to-rem(12);
+        min-width: calc(100% * 3);
+        transition: all .7s ease-in;
+
+        &.active-card-1 {
+            transform: translateX(0);
+        }
+        &.active-card-2 {
+            transform: translateX(-33.9%);
+        }
+        &.active-card-3 {
+            transform: translateX(-67.9%);
+        }
+    }
+
+    &__card {
+        border-radius: to-rem(7);
+        cursor: pointer;
+        display: grid;
+        grid-template-rows: 1fr to-rem(75) auto;
+        min-width: calc(100% / 3);
+        padding: to-rem(16);
+        
+        &.active {
+            border: 1px solid #03036f;
+        }
+
+        &-title {
+            @include fontSize('normal-bg');
+            @include fontWeight('bold');
+        }
+
+        &-body {
+            align-items: center;
+            column-gap: to-rem(7);
+            display: grid;
+            grid-template-columns: to-rem(105) auto;
+            grid-template-rows: to-rem(75);
+        }
+
+        &-img {
+            text-align: center;
+
+            & > img {
+                height: to-rem(75);
+                width: auto;
+                max-width: to-rem(110);
+            }
+        }
+
+        &-text {
+            margin-block-end: 0;
+            @include fontWeight('medium');
+        }
+
+        &-description {
+            @include fontSize('small')
+        }
+
+        &-price {
+            color: #03036f;
+            margin-block-end: 0;
+            @include fontSize('lg');
+            @include fontWeight('bold');
+
+            & > .price-sign {
+                @include fontSize('normal')
+            }
+        }
+    }
+
+    &__navigation {
+        margin-block-start: to-rem(10);
+        &-list {
+            align-items: center;
+            column-gap: to-rem(6);
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding-inline-start: 0;
+        }
+
+        &-bullets {
+            background-color: #bcbcbc;
+            border-radius: 50%;
+            box-shadow: 0 0 to-rem(4) rgba(0, 0, 0, .5);
+            cursor: pointer;
+            display: inline-block;
+            height: to-rem(10);
+            width: to-rem(10);
+
+            &.active {
+                background-color: #03036f;
+            }
+        }
+
     }
 }

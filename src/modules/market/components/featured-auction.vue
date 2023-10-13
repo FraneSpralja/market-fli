@@ -2,11 +2,13 @@
     <div class="featured-auction">
         <div class="container">
             <h3 class="featured-auction__title">subastas destacada</h3>
-            <div class="row featured-auction__row flex-nowrap">
+            <div class="featured-auction__row flex-nowrap">
                 <div
-                v-for="product in featured"
+                v-for="(product, i) in featured"
                 :key="product.id"
-                class="featured-auction__card col-10"
+                class="featured-auction__card"
+                :id="`card_${i}`"
+                @click="showModal"
                 >
                     <div class="featured-auction__card-header">
                         <h5 class="featured-auction__card-title">
@@ -19,31 +21,50 @@
                         </div>
                         <div class="featured-auction__card-description">
                             <p class="featured-auction__card-text">
-                                {{ product.description }}
+                                {{ product.description.slice(0, 130) }}...
                             </p>
                         </div>
                     </div>
-                    <div class="featured-auction__card-footer">
-                        <p class="featured-auction__card-price">
-                            {{ product.price }}
-                        </p>
-                    </div>
                 </div>
+            </div>
+            <div class="featured-auction__navigation">
+                <ul class="featured-auction__navigation-list">
+                    <li class="featured-auction__navigation-bullets active"></li>
+                    <li class="featured-auction__navigation-bullets"></li>
+                    <li class="featured-auction__navigation-bullets"></li>
+                </ul>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import { carousel } from '@/helpers/carousel';
 import { useStore } from 'vuex';
-import { computed } from 'vue';
+import { computed, onMounted } from 'vue';
 
     export default {
         setup() {
             const store = useStore()
 
+            const auctionCarousel = () => {
+                setTimeout(() => {
+                    const container = document.querySelector('.featured-auction__row')
+                    const btns = document.querySelectorAll('.featured-auction__navigation-bullets')
+                    const cards = document.querySelectorAll('.featured-auction__card')
+
+                    carousel(container,btns, cards)
+
+                }, 1000)
+            }
+
+            onMounted(() => {
+                auctionCarousel()
+            })
+
+
             return {
-                featured: computed(() => store.getters['market/featuredProducts'])
+                featured: computed(() => store.getters['market/featuredProducts']),
             }
         }
     }

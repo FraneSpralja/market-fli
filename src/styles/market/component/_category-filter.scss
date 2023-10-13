@@ -4,12 +4,12 @@
 .category-filter {
     appearance: none;
     background-image: url('/src/assets/img/svg/filter-solid.svg');
-    background-position: left rem(5);
+    background-position: left to-rem(5);
     background-repeat: no-repeat;
-    background-size: rem(15);
+    background-size: to-rem(15);
     border: none;
     border-bottom: 1px solid #ccc;
-    min-width: rem(150);
-    padding-block-end: rem(4);
-    padding-inline-start: rem(20);
+    min-width: to-rem(150);
+    padding-block-end: to-rem(4);
+    padding-inline-start: to-rem(20);
 }

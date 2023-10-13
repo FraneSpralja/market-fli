@@ -3,5 +3,6 @@ export default () => ({
     cart: [],
     totalPrice: null,
     categories: [],
-    featured: []
+    featured: [],
+    activeModal: false
 })

@@ -3,7 +3,7 @@
 
 #app .navbar {
     background-color: #fff;
-    box-shadow: 0 rem(1) rem(4) rgba(0, 0, 0, 0.1);
+    box-shadow: 0 to-rem(1) to-rem(4) rgba(0, 0, 0, 0.1);
     height: 42px;
     position: fixed;
     top: 0;
@@ -18,7 +18,7 @@
 
     &-cart {
         margin-inline-start: auto;
-        margin-inline-end: rem(7);
+        margin-inline-end: to-rem(7);
         position: relative;
 
         #cart-num {

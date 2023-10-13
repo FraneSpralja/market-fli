@@ -13,10 +13,10 @@
 
     .product-modal {
         background-color: #ffffff;
-        border-radius: rem(7);
+        border-radius: to-rem(7);
         max-height: 95vh;
         overflow-y: auto;
-        padding: rem(18);
+        padding: to-rem(18);
         @include positionCenter;
 
         .close-modal {
@@ -25,7 +25,7 @@
         }
 
         &__image {
-            padding-block-end: rem(10);
+            padding-block-end: to-rem(10);
 
             img {
                 height: 150px;
@@ -36,10 +36,10 @@
         &__category {
             span {
                 background-color: #b8f3b8;
-                border-radius: rem(4);
-                padding-block-end: rem(2);
-                padding-block-start: rem(1);
-                padding-inline: rem(16);
+                border-radius: to-rem(4);
+                padding-block-end: to-rem(2);
+                padding-block-start: to-rem(1);
+                padding-inline: to-rem(16);
 
                 @include fontSize('x-small');
                 @include fontWeight('bold');

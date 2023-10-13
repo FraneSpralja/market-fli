@@ -1,11 +1,11 @@
 @use '../functions/rem' as *;
 
 $breakpoints: (
-    'sm': rem(565),
-    'md': rem(768),
-    'lg': rem(996),
-    'xl': rem(1200),
-    'xxl': rem(1440),
+    'sm': to-rem(565),
+    'md': to-rem(768),
+    'lg': to-rem(996),
+    'xl': to-rem(1200),
+    'xxl': to-rem(1440),
 );
 
 @mixin Media($size){

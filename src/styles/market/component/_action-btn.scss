@@ -1,8 +1,8 @@
 @use '../../functions/rem' as *;
 
 .btn-action {
-    padding-inline: rem(16);
-    padding-block: rem(3);
-    font-size: rem(20);
-    border-radius: rem(7);
+    padding-inline: to-rem(16);
+    padding-block: to-rem(3);
+    font-size: to-rem(20);
+    border-radius: to-rem(7);
 }
