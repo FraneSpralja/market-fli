@@ -53,7 +53,9 @@ import { computed, onMounted } from 'vue';
                     const btns = document.querySelectorAll('.featured-auction__navigation-bullets')
                     const cards = document.querySelectorAll('.featured-auction__card')
 
-                    carousel(container,btns, cards)
+                    setTimeout(() => {
+                        carousel(container,btns, cards)
+                    }, 300)
 
                 }, 1000)
             }
