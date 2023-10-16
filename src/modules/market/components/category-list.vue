@@ -28,7 +28,7 @@ import productCard from './product-card'
 import productModal from './product-modal'
 import categoryFilter from './category-filter';
 
-import { computed, ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { useStore } from 'vuex'
 
 export default {
@@ -37,11 +37,23 @@ export default {
         productCard,
         productModal
     },
-    setup() {
+    props: {
+        carouselModal: {
+            type: Object,
+        }
+    },
+    setup(props) {
         const store = useStore()
         const modal = ref(false)
         const product = ref(null)
         
+        const carouselProduct = computed(() => props.carouselModal)
+
+        watch(carouselProduct, (newVal) => {
+            product.value = carouselProduct.value
+            modal.value = true
+        })
+
         return {
             modal,
             product,

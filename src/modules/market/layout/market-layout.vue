@@ -6,11 +6,15 @@
         <div class="row">
 
             <div class="col-12">
-                <auction />
+                <auction 
+                @show-modal="carouselModal"
+                />
             </div>
 
             <div class="col-12">
-                <router-view></router-view>
+                <router-view v-slot="{ Component }">
+                    <component :is="Component" :carouselModal="modal"/>
+                </router-view>
             </div>
 
         </div>
@@ -22,16 +26,20 @@
 
     import navBar from '../components/nav-bar'
     import auction from '../components/featured-auction'
+    import categoryList from '../components/category-list';
+    import { ref } from 'vue';
 
 
     export default {
         components: {
             navBar,
-            auction
+            auction,
+            categoryList
         },
         setup() {
             const store = useStore()
-            
+            const modal = ref()
+
             const products = () => {
                 store.dispatch('market/getProducts')
             }
@@ -43,6 +51,12 @@
             products()
             getFeaturedProducts()
 
+            return {
+                modal,
+                carouselModal: (e) => {
+                    modal.value = e
+                }
+            }
         }
     }
 </script>
