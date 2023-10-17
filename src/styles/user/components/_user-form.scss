@@ -1,0 +1,55 @@
+@use '../../utils/index' as *;
+@use '../../functions/rem' as *;
+
+.user-form {
+
+    h1 {
+        text-align: center;
+    }
+    
+    &__form {
+        background-color: #f9f9f9;
+        border: 1px solid #353535;
+        border-radius: to-rem(4);
+        margin-inline: auto;
+        padding: to-rem(16);
+        width: min(100%, to-rem(520));
+
+        &-box {
+            margin-bottom: to-rem(6);
+            position: relative;
+
+            &:has(.user-form__form-submit) {
+                margin-block-start: to-rem(20);
+            }
+        }
+
+        &-label {
+            margin-block-end: to-rem(5);
+            @include fontSize('normal');
+            @include fontWeight('medium');
+        }
+
+        &-input {
+            border: 1px solid rgba(0, 0, 0, .4);
+            border-radius: to-rem(4);
+            padding-inline: to-rem(8);
+            min-width: 100%;
+        }
+
+        &-submit {
+            background-color: #73bb73;
+            border: none;
+            border-radius: to-rem(4);
+            display: block;
+            margin-inline-start: auto;
+            padding-inline: to-rem(20);
+            padding-block: to-rem(7);
+
+            &:hover {
+                background-color: #479e47;
+                box-shadow: 0 0 to-rem(12) #9bdf9b;
+            }
+        }
+    }
+}
