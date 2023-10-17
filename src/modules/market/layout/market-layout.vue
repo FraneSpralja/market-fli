@@ -45,6 +45,9 @@
             }
 
             const getFeaturedProducts = () => {
+                setTimeout(() => {
+
+                }, 500)
                 store.dispatch('market/getRandomProducts')
             }
 
