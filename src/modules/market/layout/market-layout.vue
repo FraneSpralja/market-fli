@@ -46,9 +46,8 @@
 
             const getFeaturedProducts = () => {
                 setTimeout(() => {
-
+                    store.dispatch('market/getRandomProducts')
                 }, 500)
-                store.dispatch('market/getRandomProducts')
             }
 
             products()
