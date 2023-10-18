@@ -8,7 +8,7 @@
                 :key="product.id"
                 class="featured-auction__card"
                 :id="`card_${i}`"
-                @click="showModal"
+                @click="showModal(product)"
                 >
                     <div class="featured-auction__card-header">
                         <h5 class="featured-auction__card-title">
@@ -44,7 +44,8 @@ import { useStore } from 'vuex';
 import { computed, onMounted } from 'vue';
 
     export default {
-        setup() {
+        emits: ['show-modal'],
+        setup(props, { emit }) {
             const store = useStore()
 
             const auctionCarousel = () => {
@@ -65,6 +66,7 @@ import { computed, onMounted } from 'vue';
 
             return {
                 featured: computed(() => store.getters['market/featuredProducts']),
+                showModal: (item) => emit('show-modal', item)
             }
         }
     }

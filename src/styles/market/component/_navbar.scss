@@ -37,4 +37,21 @@
             width: 15px;
         }
     }
+
+    & .user-menu {
+        background: #fbfbfb;
+        border-radius: to-rem(7);
+        box-shadow: to-rem(2) to-rem(1) to-rem(7) rgba(0, 0, 0, .2);
+        display: flex;
+        flex-direction: column;
+        padding: to-rem(8) to-rem(16);
+        position: absolute;
+        right: 10px;
+        top: 100%;
+
+        a {
+            color: #353535;
+            text-decoration: none;
+        }
+    }
 }

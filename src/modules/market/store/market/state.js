@@ -4,5 +4,4 @@ export default () => ({
     totalPrice: null,
     categories: [],
     featured: [],
-    activeModal: false
 })
