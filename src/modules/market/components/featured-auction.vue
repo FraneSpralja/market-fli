@@ -56,7 +56,7 @@ import { computed, onMounted } from 'vue';
 
                     setTimeout(() => {
                         carousel(container,btns, cards)
-                    }, 300)
+                    }, 500)
 
                 }, 1000)
             }
