@@ -4,7 +4,7 @@
 #app .navbar {
     background-color: #fff;
     box-shadow: 0 to-rem(1) to-rem(4) rgba(0, 0, 0, 0.1);
-    height: 42px;
+    height: to-rem(42);
     position: fixed;
     top: 0;
     width: 100%;
@@ -26,15 +26,39 @@
             background-color: #559555;
             border-radius: 50%;
             color: #fff;
-            font-size: 10px;
+            font-size: to-rem(10);
             font-weight: bold;
             display: flex;
-            height: 15px;
+            height: to-rem(15);
             justify-content: center;
             position: absolute;
-            right: -3px;
-            top: 12px;
-            width: 15px;
+            right: to-rem(-3);
+            top: to-rem(12);
+            width: to-rem(15);
+        }
+    }
+
+    .user-menu {
+        background: #f1f1f1;
+        border-radius: to-rem(7);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: to-rem(8);
+        position: absolute;
+        right: to-rem(15);
+        top: 85%;
+
+        & > a {
+            color: #353535;
+            flex: 0 0 80%;
+            padding-block-end: to-rem(3);
+            text-align: center;
+            text-decoration: none;
+
+            &:hover {
+                border-bottom: 1px solid #353535;
+            }
         }
     }
 

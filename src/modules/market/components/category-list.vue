@@ -38,9 +38,8 @@ export default {
         productModal
     },
     props: {
-        itemModal: {
+        carouselModal: {
             type: Object,
-            default: null
         }
     },
     setup(props) {
@@ -57,6 +56,13 @@ export default {
             }
         }})
         
+        const carouselProduct = computed(() => props.carouselModal)
+
+        watch(carouselProduct, (newVal) => {
+            product.value = carouselProduct.value
+            modal.value = true
+        })
+
         return {
             modal,
             product,

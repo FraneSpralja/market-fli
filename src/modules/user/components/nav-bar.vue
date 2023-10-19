@@ -2,7 +2,9 @@
     <nav id="navbar" class="navbar">
         <div class="container-fluid">
             <div class="navbar-logo">
-                Logo
+                <router-link :to="{name: 'category-list'}">
+                    Logo
+                </router-link>
             </div>
             
             <button 

@@ -7,6 +7,7 @@
                 v-for="(product, i) in featured"
                 :key="product.id"
                 class="featured-auction__card"
+                :class="i === 0 ? 'active' : ''"
                 :id="`card_${i}`"
                 @click="showModal(product)"
                 >
@@ -45,7 +46,7 @@ import { computed, onMounted } from 'vue';
 
     export default {
         emits: ['show-modal'],
-        setup(props, { emit }) {
+        setup(props, {emit}) {
             const store = useStore()
 
             const auctionCarousel = () => {
@@ -54,7 +55,9 @@ import { computed, onMounted } from 'vue';
                     const btns = document.querySelectorAll('.featured-auction__navigation-bullets')
                     const cards = document.querySelectorAll('.featured-auction__card')
 
-                    carousel(container,btns, cards)
+                    setTimeout(() => {
+                        carousel(container,btns, cards)
+                    }, 500)
 
                 }, 1000)
             }
