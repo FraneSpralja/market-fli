@@ -70,6 +70,12 @@
 
             const user_id = route.params.id
 
+            const getMyProducts = async(id) => {
+                store.dispatch('user/getMyProducts', id)
+            }
+
+            getMyProducts(user_id)
+
             return {
                 user_login: computed(() => store.getters['user/getUser']),
                 products: computed(() => store.getters['user/getMyProducts']),

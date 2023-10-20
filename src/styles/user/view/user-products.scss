@@ -1,6 +1,50 @@
 @use '../../utils/index' as *;
 @use '../../functions/rem' as *;
 
-.user-products {
+.user-add-products {
     padding-block-start: to-rem(55);
+
+    &__btn {
+        background-color: transparent;
+        border: none;
+        border-bottom: 1px solid #191919;
+
+        &:hover {
+            color: #3f3fb7;
+            border-color: #3f3fb7;
+        }
+    } 
+
+    &__form {
+        background-color: #f9f9f9;
+        border: 1px solid #353535;
+        border-radius: to-rem(7);
+        margin-block-start: to-rem(40);
+        margin-inline: auto;
+        padding: to-rem(16);
+        width: min(95vw, to-rem(550));
+
+        &-label {
+            display: block;
+        }
+
+        &-input,
+        &-textarea {
+            width: 100%;
+        }
+
+        &-label,
+        &-input,
+        &-textarea {
+            margin-block-end: to-rem(10);
+        }
+
+        &-input {
+            &--hidden {
+                position: absolute;
+                left: 101%;
+            }
+        }
+    }
 }
+

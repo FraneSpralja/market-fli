@@ -3,7 +3,7 @@ import storage from '@/helpers/storage'
 import randomId from '@/helpers/randomId'
 import { auth } from "@/helpers/auth"
 import { signInWithEmailAndPassword } from 'firebase/auth'
-import { collection, doc, getDoc, getDocs, setDoc, onSnapshot } from 'firebase/firestore'
+import { collection, doc, getDoc, getDocs, setDoc, updateDoc } from 'firebase/firestore'
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
 
 export const signUpUser = async( {commit},  {email, pass} ) => {
@@ -50,9 +50,17 @@ export const setNewProduct = async({ commit }, item) => {
         const { title, price, product_file, description, user_id } = item
         const id = randomId()
         const storageRef = ref(storage, `products/user_${user_id}/${id}`)
-        
-        const uploadImg = await uploadBytesResumable(storageRef, product_file)
-        const img_url = await getDownloadURL(uploadImg.ref)
+        const images = {}
+
+        console.log(product_file)
+
+        for(let i = 0; i < product_file.length; i++) {
+            let file = product_file[i]
+            const uploadImg = await uploadBytesResumable(storageRef, file)
+            const url = await getDownloadURL(uploadImg.ref)
+
+            images[`img_${i + 1}`] = url
+        }
 
         const newProduct =  {
             title,
@@ -60,11 +68,18 @@ export const setNewProduct = async({ commit }, item) => {
             description,
             user_id,
             id,
-            img_url
         }
 
-        await setDoc(doc(db, `products/user_${user_id}/items`, `item_${id}`),{
+        const itemRef = doc(db, `products/user_${user_id}/items/item_${id}` )
+
+        await setDoc(itemRef,{
             ...newProduct
+        })
+
+        newProduct.images = images
+
+        await updateDoc(itemRef, {
+            images
         })
 
         commit('setNewProduct', newProduct)

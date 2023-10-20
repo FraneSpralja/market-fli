@@ -18,6 +18,7 @@
 </template>
 
 <script>
+    import { carousel } from '@/helpers/carousel';
     import { useStore } from 'vuex'
     import { ref } from 'vue';
 
@@ -34,17 +35,25 @@
         },
         setup() {
             const store = useStore()
-            
-            const products = () => {
-                store.dispatch('market/getProducts')
-            }
 
-            const getFeaturedProducts = async() => {
+            const auctionCarousel = () => {
+                setTimeout(() => {
+                    const container = document.querySelector('.featured-auction__row')
+                    const btns = document.querySelectorAll('.featured-auction__navigation-bullets')
+                    const cards = document.querySelectorAll('.featured-auction__card')
+
+                    carousel(container,btns, cards)
+
+                }, 500)
+            }
+            
+            const products = async () => {
+                await store.dispatch('market/getProducts')
                 await store.dispatch('market/getRandomProducts')
+                auctionCarousel()
             }
 
             products()
-            getFeaturedProducts()
 
         }
     }

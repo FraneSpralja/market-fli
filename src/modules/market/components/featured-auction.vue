@@ -49,22 +49,6 @@ import { computed, onMounted } from 'vue';
         setup(props, {emit}) {
             const store = useStore()
 
-            const auctionCarousel = () => {
-                setTimeout(() => {
-                    const container = document.querySelector('.featured-auction__row')
-                    const btns = document.querySelectorAll('.featured-auction__navigation-bullets')
-                    const cards = document.querySelectorAll('.featured-auction__card')
-
-                    carousel(container,btns, cards)
-
-                }, 1000)
-            }
-
-            onMounted(() => {
-                auctionCarousel()
-            })
-
-
             return {
                 featured: computed(() => store.getters['market/featuredProducts']),
                 showModal: (item) => emit('show-modal', item)
