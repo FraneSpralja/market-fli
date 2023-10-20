@@ -1,0 +1,6 @@
+@use '../../utils/index' as *;
+@use '../../functions/rem' as *;
+
+.user-products {
+    padding-block-start: to-rem(55);
+}

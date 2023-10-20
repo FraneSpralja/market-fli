@@ -7,9 +7,7 @@ export const carousel = (container, btns, cards) => {
             const button = btns[i]
             carouselTransition(container, btns, cards, button, index)
 
-            setTimeout(() => {
-                button.classList.remove('active')
-            }, 2000)
+            button.classList.remove('active')
         })
     } )
 

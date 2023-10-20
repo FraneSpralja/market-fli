@@ -7,5 +7,25 @@ export default () => ({
         addres: undefined,
         phone: undefined,
         img_profile: undefined
-    }
+    },
+    my_products: [
+        {
+            title: 'producto',
+            description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga, ipsa! Mollitia, repellendus. Facere beatae quidem quis omnis veniam maxime dicta aperiam illum, ipsam amet rem.',
+            price: 2500,
+            image: '../../../src/assets/img/mockups/product-1.jpg'
+        },
+        {
+            title: 'producto',
+            description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga, ipsa! Mollitia, repellendus. Facere beatae quidem quis omnis veniam maxime dicta aperiam illum, ipsam amet rem.',
+            price: 2500,
+            image: '/src/assets/img/mockups/product-2.jpg'
+        },
+        {
+            title: 'producto',
+            description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga, ipsa! Mollitia, repellendus. Facere beatae quidem quis omnis veniam maxime dicta aperiam illum, ipsam amet rem.',
+            price: 2500,
+            image: '/src/assets/img/mockups/product-2.jpg'
+        },
+    ]
 })

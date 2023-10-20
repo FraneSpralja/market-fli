@@ -1,0 +1,84 @@
+@use '../../utils/index' as *;
+@use '../../functions/rem' as *;
+
+.user-profile {
+    padding-block-start: to-rem(55);
+
+    &__header {
+        display: flex;
+        align-items: center;
+    }
+
+    &__avatar {
+        align-items: center;
+        border-radius: 50%;
+        display: flex;
+        font-size: to-rem(40);
+        height: to-rem(60);
+        justify-content: center;
+        text-align: center;
+        width: to-rem(60);
+        
+        &.avatar-initial {
+            background-image: linear-gradient(80deg, #ccc, #adbcce);
+        }
+        
+        &-initial {
+            flex: 0 0 100%;
+            margin-block-end: 0;
+        }
+    }
+
+    &__perfil {
+        background-color: #adbcce;
+        border-radius: to-rem(7);
+        padding-block: to-rem(8);
+        padding-inline: to-rem(16);
+        padding-inline-start: to-rem(32);
+        transform: translateX(to-rem(-20));
+        z-index: -1;
+        &-list {
+            margin-block-end: 0;
+            list-style: none;
+            padding-inline-start: 0;
+        }
+        &-item {
+            font-size: to-rem(14);
+            float: left;
+
+            &:not(:last-of-type) {
+                padding-inline-end: to-rem(8);
+            }
+
+            &--strong {
+                font-weight: 500;
+            }
+        }
+    }
+
+    &__navbar {
+        margin-inline-start: auto;
+    }
+
+    &__add-product {
+        position: fixed;
+        border-radius: to-rem(25);
+        bottom: to-rem(45);
+        padding-inline-start: to-rem(16);
+        padding-block: to-rem(8);
+        right: 0;
+        text-align: left;
+        transform: translateX(to-rem(155));
+        transition: transform .5s ease-in-out;
+        width: to-rem(200);
+
+        .fa-plus {
+            display: inline-block;
+            margin-inline-end: to-rem(8);
+        }
+
+        &:hover {
+            transform: translateX(to-rem(25));
+        }
+    }
+}

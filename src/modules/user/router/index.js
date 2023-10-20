@@ -10,7 +10,12 @@ export default {
         {
             path: 'user_:id',
             name: 'user-profile',
-            component: () => import(/* webpackChunkName user-view */ '@/modules/user/view/user-profile.vue')
+            component: () => import(/* webpackChunkName user-view */ '@/modules/user/view/user-profile.vue'),
+        },
+        {
+            path: 'my-product/user_:id',
+            name: 'my-product',
+            component: () => import(/* webpackChunkName user-product */ '@/modules/user/view/user-add-products.vue')
         }
     ]
 }

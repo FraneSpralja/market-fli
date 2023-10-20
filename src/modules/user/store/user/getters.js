@@ -2,6 +2,6 @@
 //     return state.algo
 // }
 
-export const getUser = (state) => {
-    return state.user
-}
+export const getUser = (state) => state.user
+
+export const getMyProducts = (state) => state.my_products
