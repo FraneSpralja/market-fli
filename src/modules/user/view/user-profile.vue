@@ -25,20 +25,20 @@
 
             <div class="user-profile__body">
                 <user-resume
-                :title="`Productos`"
+                :title="`My products`"
                 :items="products"
                 />
                 <user-resume
-                :title="`Compras`"
-                :items="products"
+                :title="`My `"
+                :items="shopping"
                 />
                 <user-resume
                 :title="`Ventas`"
-                :items="products"
+                :items="sales"
                 />
                 <user-resume
                 :title="`Pendientes`"
-                :items="products"
+                :items="likes"
                 />
             </div>
 
@@ -73,6 +73,9 @@
             return {
                 user_login: computed(() => store.getters['user/getUser']),
                 products: computed(() => store.getters['user/getMyProducts']),
+                shopping: computed(() => store.getters['user/getMyShopping']),
+                sales: computed(() => store.getters['user/getMySales']),
+                likes: computed(() => store.getters['user/getMyLikes']),
                 new_product: () => {
                     router.push( { name: 'my-product', params: { id: user_id } } )
                 }

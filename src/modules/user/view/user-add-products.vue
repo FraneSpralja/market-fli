@@ -22,7 +22,7 @@
             </div>
             <div class="user-products__form-box">
                 <label class="user-products__form-label">Description</label>
-                <textarea class="user-products__form-textarea" v-model="title"></textarea>
+                <textarea class="user-products__form-textarea" v-model="description"></textarea>
             </div>
             <div class="user-products__form-box">
                 <button>Save product</button>
@@ -40,7 +40,7 @@
         setup() {
             const router = useRouter()
             const route = useRoute()
-            const store = useStore
+            const store = useStore()
 
             const product = reactive({})
             const title = ref()
@@ -56,14 +56,15 @@
                 description,
                 back_to_profile: () => router.go(-1),
                 getImage: (e) => product_file.value = e.target.files[0],
-                newProduct: () => {
+                newProduct: async () => {
                     product.title = title.value
                     product.price = price.value
                     product.product_file = product_file.value
                     product.description = description.value
                     product.user_id = user_id
 
-                    console.log(product)
+                    await store.dispatch('user/setNewProduct', product)
+                    router.go(-1)
                 }
             }
         }
