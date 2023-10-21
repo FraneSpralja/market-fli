@@ -14,7 +14,3 @@ export const userLogin = (state, user) => {
 export const setMyProducts = (state, products) => {
     state.my_products = products
 }
-
-export const setNewProduct = (state, product) => {
-    state.my_products = [ ...state.my_products, product]
-}

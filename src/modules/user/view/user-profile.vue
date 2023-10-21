@@ -29,16 +29,16 @@
                 :items="products"
                 />
                 <user-resume
-                :title="`My `"
+                :title="`My Likes`"
+                :items="likes"
+                />
+                <user-resume
+                :title="`My Shopping`"
                 :items="shopping"
                 />
                 <user-resume
-                :title="`Ventas`"
+                :title="`My Sales`"
                 :items="sales"
-                />
-                <user-resume
-                :title="`Pendientes`"
-                :items="likes"
                 />
             </div>
 

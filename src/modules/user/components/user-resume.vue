@@ -11,7 +11,7 @@
                         {{ item.title }}
                     </h3>
                     <div class="user-resume__card-img">
-                        <img :src="item.img_url" :alt="item.title" height="50">
+                        <img v-for="img in item.images" :src="img" :alt="item.title" height="50">
                     </div>
                 </div>
                 <div class="user-resume__card-body">
