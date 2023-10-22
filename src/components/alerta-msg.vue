@@ -12,6 +12,13 @@
                     <div class="alert-msg__body">
                         <p class="alert-msg__text">{{ message }}</p>
                     </div>
+                    <div v-if="action_btn" class="alert-msg__footer">
+                        <button
+                        @click="actionBtn"
+                        >
+                            Accept
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -28,12 +35,17 @@
             message: {
                 type: String,
                 required: true
+            },
+            action_btn: {
+                type: Boolean,
+                default: false
             }
         },
-        emits: ['close-alert'],
+        emits: ['close-alert', 'action-btn'],
         setup(props, { emit }) {
             return {
-                closeAlert: () => emit('close-alert')
+                closeAlert: () => emit('close-alert'),
+                actionBtn: () => emit('action-btn')
             }
         }
     }

@@ -2,22 +2,20 @@ import db from '@/helpers/db'
 import storage from '@/helpers/storage'
 import randomId from '@/helpers/randomId'
 import { auth } from "@/helpers/auth"
-import { signInWithEmailAndPassword } from 'firebase/auth'
+import { signInWithEmailAndPassword, signOut } from 'firebase/auth'
 import { collection, doc, getDoc, getDocs, setDoc, updateDoc, where, query } from 'firebase/firestore'
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
-import user from '.'
 
 export const signUpUser = async( {commit},  {email, pass} ) => {
     try {
         const userCredentials = await signInWithEmailAndPassword(auth, email, pass)
         const { uid, accessToken } = userCredentials.user
-        
-        console.log(uid)
 
         const userRef = doc(db, 'users', uid)
         const User = await getDoc(userRef)
 
         const user = { ...User.data(), accessToken }
+        console.log(user)
         commit('userLogin', user)
 
         return user
@@ -25,6 +23,15 @@ export const signUpUser = async( {commit},  {email, pass} ) => {
     } catch (error) {
         console.log(error.code)
         console.log(error.message)
+    }
+}
+
+export const signOutUser = async( {commit} ) => {
+    try {
+        await signOut(auth)
+        commit('userLogout')
+    } catch (error) {
+        console.log(error)
     }
 }
 

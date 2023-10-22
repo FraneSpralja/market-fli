@@ -5,10 +5,11 @@
 export const userLogin = (state, user) => {
     state.user = {
         ...user,
-        addres: undefined,
-        phone: undefined,
-        img_profile: undefined
     }
+}
+
+export const userLogout = (state) => {
+    state.user = {}
 }
 
 export const setMyProducts = (state, products) => {
