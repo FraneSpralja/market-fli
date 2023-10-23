@@ -124,6 +124,7 @@ export default {
                 }
 
                 await createUser(user)
+                router.push( { name: 'user-form', query: { user: `login_${Date.now()}` } } )
             },
             signUp: async() => {
                 login.email = email.value

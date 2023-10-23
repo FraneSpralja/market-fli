@@ -1,23 +1,24 @@
 <template>
-    <div class="col-12 col-lg-4 col-xxl-3">
+    <div class="col-12 col-md-6 col-lg-4 col-xxl-3">
         <div class="product-card p-3 mb-4">
-            <div class="product-card__header">
+            <div 
+            @click="showModal"
+            @mouseover="addBorderToCard"
+            @mouseout="removeBorderToCard"
+            class="product-card__header">
                 <h4 class="product-card__title text-center">{{ product.title }}</h4>
                 <div class="product-card__img d-flex align-items-center justify-content-center text-center">
                     <img 
-                    :src="product.image" 
+                    :src="product.images.img_1" 
                     :alt="product.title" 
                     class="product-img"
-                    @click="showModal"
-                    @mouseover="addBorderToCard"
-                    @mouseout="removeBorderToCard"
                     >
                 </div>
             </div>
             <div class="product-card__body pt-3">
-                <div class="product-card__category mb-2 pb-2">
-                    <span class="product-category px-3 py-1">
-                        {{ product.category }}
+                <div v-if="product.category" class="product-card__category mb-2 pb-2">
+                    <span v-for="(cat, i) in product.category" class="product-category px-3 py-1">
+                        {{ cat }}
                     </span>
                 </div>
                 <p class="product-card__description">

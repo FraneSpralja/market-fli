@@ -11,7 +11,7 @@ import { useStore } from 'vuex';
             class="cart-menu__card row align-items-center pb-1 mb-2"
             >
                 <div class="cart-menu__img col-2">
-                    <img :src="product.image" :alt="product.title">
+                    <img :src="product.images.img_1" :alt="product.title">
                     <span class="cart-menu__number">{{ product.number }}</span>
                 </div>
                 <h5 class="cart-menu__title col-7">

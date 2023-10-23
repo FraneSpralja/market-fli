@@ -18,7 +18,7 @@
                     </div>
                     <div class="featured-auction__card-body">
                         <div class="featured-auction__card-img">
-                            <img :src="product.image" :alt="product.title" height="20">
+                            <img :src="product.images.img_1" :alt="product.title" height="20">
                         </div>
                         <div class="featured-auction__card-description">
                             <p class="featured-auction__card-text">
@@ -40,9 +40,8 @@
 </template>
 
 <script>
-import { carousel } from '@/helpers/carousel';
 import { useStore } from 'vuex';
-import { computed, onMounted } from 'vue';
+import { computed } from 'vue';
 
     export default {
         emits: ['show-modal'],
@@ -57,7 +56,3 @@ import { computed, onMounted } from 'vue';
     }
 
 </script>
-
-<style lang="scss" scoped>
-
-</style>

@@ -12,11 +12,17 @@
                 {{ product.title }}
             </h3>
             <div class="product-modal__category col-12">
-                <span>{{ product.category }}</span>
+                <span
+                v-for="(category, i) in product.category"
+                >{{ category }}</span>
             </div>
         </div>
-        <div class="product-modal__image text-center">
-            <img :src="product.image" :alt="product.title">
+        <div class="product-modal__carrousel">
+            <div class="product-modal__carrousel-images">
+                <div v-for="(image, i) in product.images" class="product-modal__image text-center">
+                    <img :src="image" :alt="product.title">
+                </div>
+            </div>
         </div>
         <div class="product-modal__body">
             <p class="product-modal__description">

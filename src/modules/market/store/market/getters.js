@@ -15,7 +15,14 @@ export const totalCartProducts = state => {
 }
 
 export const selectItemByCategory = (state) => {
-    const categories = state.products.map( (item) => item.category )
+    const categories = []
+    const categoryArr = state.products
+    for(let i = 0; i < categoryArr.length; i++) {
+        const category = categoryArr[i].category
+        for(let value in category) {
+            categories.push(category[value])
+        }
+    }
     return categories
         .filter((item, index) => categories
             .indexOf(item) === index )

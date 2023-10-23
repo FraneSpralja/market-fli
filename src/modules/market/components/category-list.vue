@@ -5,7 +5,8 @@
         />
         <div class="row">
             <product-card 
-            v-for="item in getProducts" :key="item.id"
+            v-for="item in getProducts" 
+            :key="item.id"
             :product="item"
             @show-modal="showModal"
             />
@@ -40,6 +41,9 @@ export default {
     props: {
         carouselModal: {
             type: Object,
+        },
+        itemModal: {
+            type: Object
         }
     },
     setup(props) {
