@@ -30,7 +30,7 @@
     import navBar from '../components/nav-bar'
     import auction from '../components/featured-auction'
     import categoryList from '../components/category-list';
-    import { ref } from 'vue';
+    import { computed, onMounted, ref } from 'vue';
 
     export default {
         components: {
@@ -41,6 +41,9 @@
         setup() {
             const store = useStore()
             const product = ref()
+
+            const userIsActive = computed(() => store.getters['user/isActive'])
+
             const auctionCarousel = () => {
                 setTimeout(() => {
                     const container = document.querySelector('.featured-auction__row')
@@ -59,6 +62,10 @@
             }
 
             products()
+
+            onMounted(() => {
+                store.dispatch('user/activeUser')
+            })
 
             return {
                 product,

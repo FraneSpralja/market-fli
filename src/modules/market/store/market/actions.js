@@ -1,8 +1,6 @@
 import app from '@/firebase/config'
 import db from '@/helpers/db'
-import { collection, doc, getDocs, getDoc } from 'firebase/firestore'
-
-import axios from "axios"
+import { collection, doc, getDocs, getDoc, deleteDoc } from 'firebase/firestore'
 
 export const getProducts = async( {commit} ) => {
     
@@ -18,32 +16,12 @@ export const getProducts = async( {commit} ) => {
     }
 }
 
-/* export const addProductsToCarts = async( {commit}, id ) => {
-    try {        
-        const url = 'https://fakestoreapi.com/products'
-        const { data } = await axios.get(`${url}/${id}`)
-        commit('addToCart', data)
-    } catch (error) {
-        console.log(error)
-    }
-} */
-
 export const addProductsToCarts = async( {commit}, id ) => {
     try {        
         const Ref = doc(db, 'products', `item_${id}`)
         const data = await getDoc(Ref)
         commit('addToCart', data.data())
     } catch (error) {
-        console.log(error)
-    }
-}
-
-export const deleteCartProduct = async( {commit}, id ) => {
-    try {
-        const url = 'https://fakestoreapi.com/products'
-        const { data } = await axios.get(`${url}/${id}`)
-        commit('deleteFromCart', data)
-    } catch (error) {        
         console.log(error)
     }
 }

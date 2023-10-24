@@ -75,8 +75,8 @@ export default {
         return {
                 products,
                 totalPrice: computed( () => store.getters['market/totalPrice'] ),
-                deleteProduct: async (id) => {
-                    await store.dispatch('market/deleteCartProduct', id)
+                deleteProduct: (id) => {
+                    store.commit('market/deleteFromCart', id)
                     if(products.value.length <= 0) emit('hidde-cart') 
                 },
                 oneLess: (id) => {

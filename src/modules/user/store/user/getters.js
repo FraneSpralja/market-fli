@@ -2,7 +2,10 @@
 //     return state.algo
 // }
 
+import { userActive } from "./mutations"
+
 export const getUser = (state) => state.user
+export const isActive = (state) => state.user_active
 
 export const getMyProducts = (state) => state.my_products
 export const getMyShopping = (state) => state.my_shopping

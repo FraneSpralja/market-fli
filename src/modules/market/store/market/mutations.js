@@ -26,8 +26,8 @@ export const addToCart = (state, product) => {
     }
 }
 
-export const deleteFromCart = (state, product) => {
-    const newCart = state.cart.filter( (prod) => prod.id !==  product.id)
+export const deleteFromCart = (state, id) => {
+    const newCart = state.cart.filter( (prod) => prod.id !==  id)
     state.cart = newCart;
 }
 

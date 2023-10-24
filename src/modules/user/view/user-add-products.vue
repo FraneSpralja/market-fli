@@ -41,6 +41,38 @@
                 <input type="number" class="user-add-products__form-input" v-model="price">
             </div>
             <div class="user-add-products__form-box">
+                <label class="user-add-products__form-label">Colección</label>
+                <input type="checkbox" 
+                class="user-add-products__form-checkbox" 
+                value="coleccion"
+                @change="addTagging"
+                >
+                <label class="user-add-products__form-label">Cartas</label>
+                <input type="checkbox" 
+                class="user-add-products__form-checkbox" 
+                value="cartas"
+                @change="addTagging"
+                >
+                <label class="user-add-products__form-label">Comics</label>
+                <input type="checkbox" 
+                class="user-add-products__form-checkbox" 
+                value="comics"
+                @change="addTagging"
+                >
+                <label class="user-add-products__form-label">Lectura</label>
+                <input type="checkbox" 
+                class="user-add-products__form-checkbox" 
+                value="lecture"
+                @change="addTagging"
+                >
+                <label class="user-add-products__form-label">Figuras</label>
+                <input type="checkbox" 
+                class="user-add-products__form-checkbox" 
+                value="figuras"
+                @change="addTagging"
+                >
+            </div>
+            <div class="user-add-products__form-box">
                 <label class="user-add-products__form-label">Description</label>
                 <textarea class="user-add-products__form-textarea" v-model="description"></textarea>
             </div>
@@ -63,6 +95,7 @@
             const store = useStore()
 
             const product = reactive({})
+            const tagging = reactive([])
             const title = ref()
             const product_file = ref([])
             const files_url = ref([])
@@ -78,6 +111,7 @@
                 price,
                 description,
                 imageSelector,
+                tagging,
                 back_to_profile: () => router.go(-1),
                 getImage: (e) => {
                     const files = [ ...e.target.files ]
@@ -90,17 +124,35 @@
 
                 },
                 newProduct: async () => {
+                    const category = {}
+                    const categories = tagging
+                                        .filter((item, index) => tagging
+                                            .indexOf(item) === index )
+                                            
+                    for(let i = 0; i < categories.length; i++) {
+                        let cat = categories[i]
+
+                        category[`cat_${i + 1}`] = cat
+                    }
+
+                    console.log(category)
+
+
                     product.title = title.value
                     product.price = price.value
                     product.product_file = product_file.value
                     product.description = description.value
                     product.user_id = user_id
+                    product.category = category
 
                     await store.dispatch('user/setNewProduct', product)
                     router.go(-1)
                 },
                 addImage: () => {
                     imageSelector.value.click()
+                },
+                addTagging: (e) => {
+                    tagging.push(e.target.value)
                 }
             }
         }

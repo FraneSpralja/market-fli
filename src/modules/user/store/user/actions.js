@@ -2,7 +2,7 @@ import db from '@/helpers/db'
 import storage from '@/helpers/storage'
 import randomId from '@/helpers/randomId'
 import { auth } from "@/helpers/auth"
-import { signInWithEmailAndPassword, signOut } from 'firebase/auth'
+import { onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth'
 import { collection, doc, getDoc, getDocs, setDoc, updateDoc, where, query } from 'firebase/firestore'
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
 
@@ -24,6 +24,18 @@ export const signUpUser = async( {commit},  {email, pass} ) => {
         console.log(error.code)
         console.log(error.message)
     }
+}
+
+export const activeUser = ({commit}) => {
+    onAuthStateChanged(auth, ( user ) => {
+        if(user) {
+            const { uid } = user;
+            commit('userActive', uid)
+        } else {
+
+            commit('userActive', undefined)
+        }
+    })
 }
 
 export const signOutUser = async( {commit} ) => {
@@ -52,17 +64,17 @@ export const getMyProducts = async({ commit }, user_id) => {
     }
 }
 
-export const setNewProduct = async({ commit }, item) => {
+export const setNewProduct = async({ commit, dispatch }, item) => {
     try {
         const id = randomId()
-        const { title, price, product_file, description, user_id } = item
+        const { title, price, product_file, description, user_id, category } = item
         const newProduct =  { title, price, description, user_id, id, }
         const itemRef = doc(db, `products/item_${id}` )
         
         const images = await saveImages(product_file, user_id, id)
         await setDoc(itemRef,{ ...newProduct })
-        await updateDoc(itemRef, { images })
-        await getMyProducts(user_id)
+        await updateDoc(itemRef, { images, category })
+        await dispatch('getMyProducts')
 
     } catch (error) {
         console.log(error)
