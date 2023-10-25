@@ -6,11 +6,13 @@
                     <div class="alert-msg__head">
                         <button 
                         @click="closeAlert"
-                        class="alert-msg__close">x</button>
+                        class="alert-msg__close">
+                            <i class="fa-solid fa-x"></i>
+                        </button>
                         <h3 class="alert-msg__title">{{ title }}</h3>
                     </div>
                     <div class="alert-msg__body">
-                        <p class="alert-msg__text">{{ message }}</p>
+                        <p class="alert-msg__text mb-2">{{ message }}</p>
                     </div>
                     <div v-if="action_btn" class="alert-msg__footer">
                         <button

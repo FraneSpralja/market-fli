@@ -5,7 +5,7 @@
             @click="showModal"
             @mouseover="addBorderToCard"
             @mouseout="removeBorderToCard"
-            class="product-card__header">
+            class="product-card__header pointer">
                 <h4 class="product-card__title text-center">{{ product.title }}</h4>
                 <div class="product-card__img d-flex align-items-center justify-content-center text-center">
                     <img 

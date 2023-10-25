@@ -17,10 +17,21 @@
                 >{{ category }}</span>
             </div>
         </div>
-        <div class="product-modal__carrousel">
-            <div class="product-modal__carrousel-images">
-                <div v-for="(image, i) in product.images" class="product-modal__image text-center">
-                    <img :src="image" :alt="product.title">
+        <div class="product-modal__carousel">
+            <div class="product-modal__carousel-images d-flex justify-content-center">
+                <div class="product-modal__image text-center">
+                    <img :src="product.images.img_1" class="main_img_modal" :alt="product.title">
+                </div>
+            </div>
+            <div class="product-modal__pagination">
+                <div 
+                v-for="(image, i) in product.images" 
+                @click="carouselModal"
+                class="product-modal__pagination-btn pointer"
+                :class="`pagination-btn-${i + 1}`"
+                :data-img="`img_${i + 1}`"
+                >
+                    <img :src="image" class="img_btn" :alt="`${product.title} img_${i + 1}`">
                 </div>
             </div>
         </div>
@@ -44,6 +55,7 @@
 <script>
 import ActionBtn from '../components/action-btn.vue';
 import { useStore } from 'vuex';
+import { computed, onMounted } from 'vue';
 
 export default {
     components: {
@@ -57,13 +69,21 @@ export default {
     },
     setup(props, { emit }) {
         const store = useStore()
+        const imagesLength = computed(() => Object.values(props.product.images).length)
 
         return {
+            imagesLength,
             closeModal: () => {
                 emit('close-modal')
             },
             addProductToCart: () => {
                 store.dispatch('market/addProductsToCarts', props.product.id)
+            },
+            carouselModal: (e) => {
+                const mainImg = document.querySelector('.main_img_modal')
+                const imgSrc = e.target.src
+                
+                mainImg.src = imgSrc
             }
         }
     }

@@ -1,5 +1,7 @@
 <template>
-    <nav-bar></nav-bar>
+    <nav-bar
+    :isActive="userIsActive"
+    ></nav-bar>
 
     <div class="container">
         <h1 class="main-title">portada inicial del market</h1>
@@ -69,6 +71,7 @@
 
             return {
                 product,
+                userIsActive,
                 showModal: (e) => {
                     product.value = { ...e }
                 }

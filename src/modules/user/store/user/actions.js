@@ -32,8 +32,7 @@ export const activeUser = ({commit}) => {
             const { uid } = user;
             commit('userActive', uid)
         } else {
-
-            commit('userActive', undefined)
+            commit('userActive', null)
         }
     })
 }

@@ -1,0 +1,55 @@
+@use '../utils/index' as *;
+@use '../functions/rem' as *;
+
+.alert-fade {
+    background: rgba(0, 0, 0, .4);
+    left: 50%;
+    height: 100vh;
+    position: fixed;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    z-index: 1;
+
+    & .alert-msg {
+        background-color: #fff;
+        border-radius: to-rem(7);
+        left: 50%;
+        padding-block: to-rem(16);
+        position: absolute;
+        text-align: center;
+        top: 50%;
+        transform: translate(-50%, -80%);
+        width: min(80vw, to-rem(750));
+
+        &__head,
+        &__body,
+        &__footer {
+            padding-inline: to-rem(16);
+        }
+
+        &__head {
+            border-bottom: 1px solid #ccc;
+            margin-block-end: to-rem(10);
+        }
+
+        &__close {
+            background-color: transparent;
+            border: none;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+        &__footer {
+            text-align: end;
+
+            button {
+                background-color: #235623;
+                border: 1px solid #226722;
+                border-radius: to-rem(7);
+                padding: to-rem(7) to-rem(16);
+            }
+        }
+    }
+}
