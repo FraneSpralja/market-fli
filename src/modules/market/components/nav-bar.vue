@@ -17,12 +17,13 @@ import { ref } from 'vue';
                     {{ totalItems }}
                 </span>
             </button>
-
+            
             <button 
             v-if="isActive"
-            @click="$router.push()"
+            @click="router.push({ name: 'user-profile', params: { id: $route.query.user.split('_')[1] }, query: { user: log_user.accessToken } })"
             class="navbar-back-to-profile">
-                profile
+                <img v-if="log_user.img_profile" :src="log_user.img_profile">
+                <span v-else class="user-profile__avatar-initial">U</span>
             </button>
 
             <button 
@@ -64,7 +65,7 @@ import { ref } from 'vue';
 
 <script>
 import { reactive, ref, computed } from 'vue';
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 import { useStore } from 'vuex';
 import alertaMsg from '@/components/alerta-msg';
 import cartMenu from './cart-menu';
@@ -81,23 +82,28 @@ import cartMenu from './cart-menu';
             }
         },
         setup() {
+            const router = useRouter()
+            const route = useRoute()
             const store = useStore()
             const userMenu = ref(false)
             const showCart = ref(false)
             const alert_txt = reactive({})
             const show_alert = ref(false)
-            const router = useRouter()
+
+            const log_user = computed(() => store.getters['user/getUser'])
 
             return {
                 userMenu,
                 showCart,
                 show_alert,
                 alert_txt,
-                openUserMenu: () => userMenu.value = !userMenu.value,
+                log_user,
+                router,
                 getCart: computed(() => store.getters['market/loadCartProducts']),
+                totalItems: computed(() => store.getters['market/totalCartProducts']),
+                openUserMenu: () => userMenu.value = !userMenu.value,
                 showCartMenu: () => showCart.value = !showCart.value,
                 hiddeCart: () => showCart.value = false,
-                totalItems: computed(() => store.getters['market/totalCartProducts']),
                 logout: () => {
                     show_alert.value = true
                     alert_txt.title = 'Sign Out'
@@ -108,7 +114,7 @@ import cartMenu from './cart-menu';
                     show_alert.value = false
                     router.push( { name: 'category-list', query: {} } )
                 },
-                closeAlert: () => show_alert.value = false
+                closeAlert: () => show_alert.value = false,
             }
         }
     }

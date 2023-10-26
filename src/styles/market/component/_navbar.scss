@@ -11,9 +11,24 @@
 
     &-cart,
     &-sign,
-    &-logout {
+    &-logout,
+    &-back-to-profile {
         background-color: transparent;
         border: none;
+    }
+
+    &-back-to-profile {
+        background-image: linear-gradient(80deg, #ccc, #adbcce);
+        border-radius: 50%;
+        display: inline-block;
+        margin-inline-end: to-rem(7);
+        height: to-rem(25);
+        width: to-rem(25);
+        transition: all .3s ease-in-out;
+
+        &:hover {
+            background-image: linear-gradient(80deg, #647587, #6797d2);
+        }
     }
 
     &-cart {

@@ -3,7 +3,7 @@ import storage from '@/helpers/storage'
 import randomId from '@/helpers/randomId'
 import { auth } from "@/helpers/auth"
 import { onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth'
-import { collection, doc, getDoc, getDocs, setDoc, updateDoc, where, query } from 'firebase/firestore'
+import { collection, doc, getDoc, getDocs, setDoc, updateDoc, where, query, arrayUnion } from 'firebase/firestore'
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
 
 export const signUpUser = async( {commit},  {email, pass} ) => {
@@ -75,6 +75,33 @@ export const setNewProduct = async({ commit, dispatch }, item) => {
         await updateDoc(itemRef, { images, category })
         await dispatch('getMyProducts')
 
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const userLikeProduct = async({commit}, { user_id, product_id }) => {
+
+    try {        
+        const userRef = doc(db, `users/${user_id}`)
+        const user = await getDoc(userRef)
+    
+        if(!user.data().likes) {
+            await updateDoc(userRef, {likes: [ product_id ]})
+            console.log(product_id)
+        } else {
+
+            if(!user.data().likes.includes(product_id)) {
+                await updateDoc(userRef, {
+                    likes: arrayUnion(product_id)
+                })
+            } else {
+                console.log('ya existe ese id')
+            }
+
+            const updatedUser = await getDoc(userRef)
+            console.log(updatedUser.data().likes)
+        }
     } catch (error) {
         console.log(error)
     }

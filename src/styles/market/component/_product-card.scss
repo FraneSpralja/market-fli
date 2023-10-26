@@ -50,6 +50,17 @@
         border: 1px solid #3737ec;
         @include fontSize('normal');
         
+        &:has(.fa-heart) {
+            background-color: #e67c7c;
+            border-color: #b55555;
+            color: #fff;
+            
+            &:hover {
+                background-color: #b55555;
+                color: #8a1e1e;
+            }
+        }
+
         &:hover {
             background-color: #8888f1;
         }

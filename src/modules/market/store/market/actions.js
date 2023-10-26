@@ -29,16 +29,16 @@ export const addProductsToCarts = async( {commit}, id ) => {
 export const getProductsByCategory = async({commit}, category) => {
     try {
         const categories = []
-        if(category === 'all') {
-            const allRef = collection(db, 'products')
-            const getCategories = await getDocs(allRef)
-            getCategories.forEach((item) => {
-                categories.push(item.data())
-            })
-        } else {
-            const getCategories = await getDocs(collection(db, 'products'))
+        const getCategories = await getDocs(collection(db, 'products'))
+
+        if(category !== 'all') {
+            const values = []
             getCategories.forEach((item) => {
                 if(Object.values(item.data().category).includes(category)) categories.push(item.data())
+            })
+        } else {
+            getCategories.forEach((item) => {
+                categories.push(item.data())
             })
         }
     

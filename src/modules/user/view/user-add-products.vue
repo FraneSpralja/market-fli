@@ -41,36 +41,37 @@
                 <input type="number" class="user-add-products__form-input" v-model="price">
             </div>
             <div class="user-add-products__form-box">
-                <label class="user-add-products__form-label">Colección</label>
                 <input type="checkbox" 
                 class="user-add-products__form-checkbox" 
                 value="coleccion"
+                checked
                 @change="addTagging"
                 >
-                <label class="user-add-products__form-label">Cartas</label>
+                <label class="user-add-products__form-label">Colección</label>
                 <input type="checkbox" 
                 class="user-add-products__form-checkbox" 
                 value="cartas"
                 @change="addTagging"
                 >
-                <label class="user-add-products__form-label">Comics</label>
+                <label class="user-add-products__form-label">Cartas</label>
                 <input type="checkbox" 
                 class="user-add-products__form-checkbox" 
                 value="comics"
                 @change="addTagging"
                 >
-                <label class="user-add-products__form-label">Lectura</label>
+                <label class="user-add-products__form-label">Comics</label>
                 <input type="checkbox" 
                 class="user-add-products__form-checkbox" 
                 value="lecture"
                 @change="addTagging"
                 >
-                <label class="user-add-products__form-label">Figuras</label>
+                <label class="user-add-products__form-label">Lectura</label>
                 <input type="checkbox" 
                 class="user-add-products__form-checkbox" 
                 value="figuras"
                 @change="addTagging"
                 >
+                <label class="user-add-products__form-label">Figuras</label>
             </div>
             <div class="user-add-products__form-box">
                 <label class="user-add-products__form-label">Description</label>

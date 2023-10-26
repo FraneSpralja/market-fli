@@ -6,7 +6,7 @@
                 class="user-profile__avatar"
                 :class="user_login.img_profile ? 'avatar-img' : 'avatar-initial'">
                     <img v-if="user_login.img_profile" :src="user_login.img_profile" class="user-profile__avatar-img">
-                    <p v-else class="user-profile__avatar-initial">{{ user_login.name[0] }}</p>
+                    <p v-else class="user-profile__avatar-initial">{{  user_login.name[0] }}</p>
                 </div>
                 <div class="user-profile__perfil">
                     <ul class="user-profile__perfil-list">

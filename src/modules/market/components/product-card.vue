@@ -33,6 +33,11 @@
                 btn_icon="cart-shopping"
                 @click="addProductToCart"
                 />
+                <btn
+                v-if="userIsActive" 
+                btn_icon="heart"
+                @click="likeToProduct"
+                />
             </div>
         </div>
     </div>
@@ -41,6 +46,8 @@
 <script>
 import btn from '../components/action-btn'
 import { useStore } from 'vuex';
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
 
 export default {
     components: {
@@ -55,8 +62,12 @@ export default {
     emits: ['show-modal'],
     setup(props, { emit }) {
         const store = useStore()
+        const route = useRoute()
+
+        const userIsActive = computed(() => store.getters['user/isActive'])
 
         return {
+            userIsActive,
             showModal: () => {
                 emit('show-modal', props.product)
             },
@@ -70,6 +81,15 @@ export default {
             },
             addProductToCart: () => {
                 store.dispatch('market/addProductsToCarts', props.product.id)
+            },
+            likeToProduct: () => {
+                if(userIsActive) {
+                    const data = {
+                        user_id: route.query.user.split('_')[1],
+                        product_id: props.product.id
+                    }
+                    store.dispatch('user/userLikeProduct', data)
+                }
             }
         }
     }
