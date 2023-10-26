@@ -2,7 +2,7 @@
     <nav id="navbar" class="navbar">
         <div class="container-fluid">
             <div class="navbar-logo">
-                <router-link :to="userIsActive ? {name: 'category-list', query: { user: `user_${userIsActive}` }} : { name: 'category-list' }">
+                <router-link :to="userIsActive ? {name: 'category-list', query: { user: `user_${userIsActive}`, AT: accessToken }} : { name: 'category-list' }">
                     Logo
                 </router-link>
             </div>
@@ -45,6 +45,7 @@ import { ref, reactive, computed, onMounted } from 'vue';
             const show_alert = ref(false)
 
             const userIsActive = computed(() => store.getters['user/isActive'])
+            const accessToken = computed(() => route.query.user)
 
             onMounted(() => {
                 store.dispatch('user/activeUser')
@@ -54,6 +55,7 @@ import { ref, reactive, computed, onMounted } from 'vue';
                 show_alert,
                 alert_txt,
                 userIsActive,
+                accessToken,
                 logout: () => {
                     if(route.query.user.includes('new-user')) {
                         router.push( { name: 'user-form', query: { user: `login_${Date.now()}` } } )

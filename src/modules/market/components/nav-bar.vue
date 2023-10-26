@@ -20,10 +20,10 @@ import { ref } from 'vue';
             
             <button 
             v-if="isActive"
-            @click="router.push({ name: 'user-profile', params: { id: $route.query.user.split('_')[1] }, query: { user: log_user.accessToken } })"
+            @click="router.push({ name: 'user-profile', params: { id: $route.query.user.split('_')[1] }, query: { user: $route.query.AT } })"
             class="navbar-back-to-profile">
                 <img v-if="log_user.img_profile" :src="log_user.img_profile">
-                <span v-else class="user-profile__avatar-initial">U</span>
+                <span v-else class="user-profile__avatar-initial">{{ log_user.name[0] }}</span>
             </button>
 
             <button 

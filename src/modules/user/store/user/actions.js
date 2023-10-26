@@ -27,10 +27,12 @@ export const signUpUser = async( {commit},  {email, pass} ) => {
 }
 
 export const activeUser = ({commit}) => {
-    onAuthStateChanged(auth, ( user ) => {
+    onAuthStateChanged(auth, async ( user ) => {
         if(user) {
             const { uid } = user;
+            const loadUser = await getDoc(doc(db, 'users', uid))
             commit('userActive', uid)
+            commit('userLogin', loadUser.data())
         } else {
             commit('userActive', null)
         }
@@ -98,9 +100,6 @@ export const userLikeProduct = async({commit}, { user_id, product_id }) => {
             } else {
                 console.log('ya existe ese id')
             }
-
-            const updatedUser = await getDoc(userRef)
-            console.log(updatedUser.data().likes)
         }
     } catch (error) {
         console.log(error)
