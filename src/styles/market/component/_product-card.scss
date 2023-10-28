@@ -54,10 +54,11 @@
             background-color: #e67c7c;
             border-color: #b55555;
             color: #fff;
+            transition: all .3s ease-in;
             
             &:hover {
-                background-color: #b55555;
-                color: #8a1e1e;
+                background-color: #fff;
+                color: #e67c7c;
             }
         }
 
@@ -68,5 +69,14 @@
 
     &:has(.product-img__hover) {
         border: 1px solid #076936;
+    }
+
+    &__footer {
+        &.user-like {
+            & > .btn-action:has(.fa-heart) {
+                background-color: #fff;
+                color: #e67c7c;
+            }
+        }
     }
 }

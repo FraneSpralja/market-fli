@@ -94,19 +94,22 @@ export const userLikeProduct = async({commit, dispatch}, { user_id, product_id }
         if(product.data().user_id !== user_id) {
             if(!user.data().likes) {
                 await updateDoc(userRef, {likes: [ product_id ]})
-                console.log(product_id)
+                console.log(`el producto id ${product_id} fue agregado a tu lista`)
+                return true
             } else {
                 if(!user.data().likes.includes(product_id)) {
                     await updateDoc(userRef, {
                         likes: arrayUnion(product_id)
                     })
                     console.log(`el producto id ${product_id} fue agregado a tu lista`)
+                    return true
                 } else {
                     await updateDoc(userRef, {
                         likes: arrayRemove(product_id)
                     })
 
                     console.log(`el producto id ${product_id} fue eliminado de tu lista`)
+                    return false
                 }
             }
         } else {

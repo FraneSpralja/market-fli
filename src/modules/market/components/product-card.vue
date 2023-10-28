@@ -25,7 +25,10 @@
                     {{  product.description.substring(0,135)  }}...
                 </p>
             </div>
-            <div class="product-card__footer d-flex flex-wrap align-items-center justify-content-between">
+            <div 
+            class="product-card__footer d-flex flex-wrap align-items-center justify-content-between"
+            :class="user_like ? 'user-like' : ''"
+            >
                 <p class="product-card__price mb-0">
                     ${{ product.price }}
                 </p>
@@ -46,7 +49,7 @@
 <script>
 import btn from '../components/action-btn'
 import { useStore } from 'vuex';
-import { computed } from 'vue';
+import { computed, ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 
 export default {
@@ -64,13 +67,25 @@ export default {
         const store = useStore()
         const route = useRoute()
 
+        const user_like = ref(false)
+
         const userIsActive = computed(() => store.getters['user/isActive'])
-        const userLikes = computed(() => {
-            if(userIsActive) store.getters['user/getMyLikes']
+        const userLikes = (item_id) => {
+            if(userIsActive) {
+                const products = store.getters['user/getMyLikes']
+                const likeIndex = products.findIndex((item) => item.id === item_id)
+
+                if(likeIndex !== -1) user_like.value = true
+            }
+        }
+
+        onMounted(() => {
+            userLikes(props.product.id)
         })
 
         return {
             userIsActive,
+            user_like,
             showModal: () => {
                 emit('show-modal', props.product)
             },
@@ -91,14 +106,9 @@ export default {
                         user_id: route.query.user.split('_')[1],
                         product_id: props.product.id
                     }
-                    await store.dispatch('user/userLikeProduct', data)
+                    user_like.value = await store.dispatch('user/userLikeProduct', data)
                 }
             },
-            likedProduct: computed(() => {
-                if(userIsActive) {
-
-                }
-            })
         }
     }
 

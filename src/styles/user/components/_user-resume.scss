@@ -1,0 +1,29 @@
+@use '../../utils/index' as *;
+@use '../../functions/rem' as *;
+
+.user-resume {
+
+    &__cards {
+        column-gap: to-rem(16);
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    &__card {
+        background-color: #fdfdfd;
+        border: 1px solid #454545;
+        border-radius: to-rem(7);
+        padding: to-rem(16);
+
+        &-head {
+            display: grid;
+            grid-template-rows: repeat(2, 1fr);
+        }
+
+        &-title {
+            @include fontSize('normal-bg');
+            @include fontWeight('medium');
+        }
+    }
+
+}

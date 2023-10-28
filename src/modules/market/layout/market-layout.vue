@@ -26,13 +26,14 @@
 </template>
 
 <script>
-    import { carousel } from '@/helpers/carousel';
-    import { useStore } from 'vuex'
+import { carousel } from '@/helpers/carousel';
+import { useStore } from 'vuex'
 
-    import navBar from '../components/nav-bar'
-    import auction from '../components/featured-auction'
-    import categoryList from '../components/category-list';
-    import { computed, onMounted, ref } from 'vue';
+import navBar from '../components/nav-bar'
+import auction from '../components/featured-auction'
+import categoryList from '../components/category-list';
+import { computed, onMounted, ref } from 'vue';
+import { useRoute } from 'vue-router';
 
     export default {
         components: {
@@ -42,9 +43,11 @@
         },
         setup() {
             const store = useStore()
+            const route = useRoute()
             const product = ref()
 
             const userIsActive = computed(() => store.getters['user/isActive'])
+            const user_id = route.query.user
 
             const auctionCarousel = () => {
                 setTimeout(() => {
@@ -63,10 +66,15 @@
                 auctionCarousel()
             }
 
+            const userLikes = async(id) => {
+                if(userIsActive) await store.dispatch('user/getUserLikes', id)
+            }
+
             products()
 
-            onMounted(() => {
-                store.dispatch('user/activeUser')
+            onMounted(async() => {
+                await store.dispatch('user/activeUser')
+                await userLikes(user_id)
             })
 
             return {
