@@ -58,7 +58,7 @@
 
     import { useRoute, useRouter } from 'vue-router'
     import { useStore } from 'vuex'
-    import { computed } from 'vue'
+    import { computed, onMounted } from 'vue'
     export default {
         components: {
             userResume
@@ -70,9 +70,7 @@
 
             const user_id = route.params.id
 
-            const getMyProducts = async(id) => {
-                store.dispatch('user/getMyProducts', id)
-            }
+            const getMyProducts = async(id) => store.dispatch('user/getMyProducts', id)
 
             getMyProducts(user_id)
 

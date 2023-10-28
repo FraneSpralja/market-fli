@@ -19,9 +19,11 @@ export default {
         const route = useRoute()
         
         const id = route.params.id
-        const getMyProducts = () => store.dispatch('user/getMyProducts', id)
+        const getMyProducts = async() => await store.dispatch('user/getMyProducts', id)
+        const getUserLikes = async() => await store.dispatch('user/getUserLikes', id)
 
         getMyProducts()
+        getUserLikes()
     }
 }
 </script>

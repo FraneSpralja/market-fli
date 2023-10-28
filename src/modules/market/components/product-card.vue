@@ -65,6 +65,9 @@ export default {
         const route = useRoute()
 
         const userIsActive = computed(() => store.getters['user/isActive'])
+        const userLikes = computed(() => {
+            if(userIsActive) store.getters['user/getMyLikes']
+        })
 
         return {
             userIsActive,
@@ -82,15 +85,20 @@ export default {
             addProductToCart: () => {
                 store.dispatch('market/addProductsToCarts', props.product.id)
             },
-            likeToProduct: () => {
+            likeToProduct: async () => {
                 if(userIsActive) {
                     const data = {
                         user_id: route.query.user.split('_')[1],
                         product_id: props.product.id
                     }
-                    store.dispatch('user/userLikeProduct', data)
+                    await store.dispatch('user/userLikeProduct', data)
                 }
-            }
+            },
+            likedProduct: computed(() => {
+                if(userIsActive) {
+
+                }
+            })
         }
     }
 
