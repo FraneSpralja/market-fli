@@ -6,7 +6,15 @@
     &__cards {
         column-gap: to-rem(16);
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: 1fr;
+
+        @include Media('md') {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        @include Media('xl') {
+            grid-template-columns: repeat(4, 1fr);
+        }
     }
     
     &__card {
@@ -16,8 +24,10 @@
         padding: to-rem(16);
 
         &-head {
+            align-items: center;
             display: grid;
             grid-template-rows: repeat(2, 1fr);
+            height: 100%;
         }
 
         &-title {

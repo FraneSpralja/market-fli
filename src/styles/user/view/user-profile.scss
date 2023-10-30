@@ -7,6 +7,11 @@
     &__header {
         display: flex;
         align-items: center;
+        flex-wrap: wrap;
+
+        @include Media('md') {
+            row-gap: to-rem(15);
+        }
     }
 
     &__avatar {
@@ -58,6 +63,10 @@
 
     &__navbar {
         margin-inline-start: auto;
+        
+        @include Media('md') {
+            margin-inline-start: 0;
+        }
     }
 
     &__add-product {
