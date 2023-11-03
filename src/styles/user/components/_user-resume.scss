@@ -1,0 +1,30 @@
+@use '../../utils/index' as *;
+@use '../../functions/rem' as *;
+
+.user-resume {
+
+    &__cards {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 95%;
+
+        @include Media('md') {
+            grid-template-columns: repeat(2, 1fr);
+            column-gap: to-rem(12);
+        }
+
+        @include Media('lg') {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        @include Media('xl') {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+    
+    &__card {
+        border: 1px solid $primary_blue_01;
+        border-radius: to-rem(7);
+        padding: to-rem(16);
+    }
+}
