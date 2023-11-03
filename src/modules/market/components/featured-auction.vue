@@ -16,15 +16,13 @@
                             {{ product.title }}
                         </h5>
                     </div>
-                    <div class="featured-auction__card-body">
-                        <div class="featured-auction__card-img">
-                            <img :src="product.images.img_1" :alt="product.title" height="20">
-                        </div>
-                        <div class="featured-auction__card-description">
-                            <p class="featured-auction__card-text">
-                                {{ product.description.slice(0, 130) }}...
-                            </p>
-                        </div>
+                    <div class="featured-auction__card-img">
+                        <img :src="product.images.img_1" :alt="product.title" height="20">
+                    </div>
+                    <div class="featured-auction__card-categories">
+                        <span v-for="cat in product.category" :key="cat" class="featured-auction__card-category px-2 me-2">
+                            {{ cat }}
+                        </span>
                     </div>
                 </div>
             </div>

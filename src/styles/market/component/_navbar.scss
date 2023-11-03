@@ -2,12 +2,13 @@
 @use '../../utils/index' as *;
 
 #app .navbar {
-    background-color: #fff;
-    box-shadow: 0 to-rem(1) to-rem(4) rgba(0, 0, 0, 0.1);
+    background-color: $neutral-white;
+    box-shadow: 0 to-rem(1) to-rem(4) rgba($neutral-black, 0.1);
     height: to-rem(42);
     position: fixed;
     top: 0;
     width: 100%;
+    z-index: 1;
 
     &-cart,
     &-sign,
@@ -18,7 +19,7 @@
     }
 
     &-back-to-profile {
-        background-image: linear-gradient(80deg, #ccc, #adbcce);
+        background-image: linear-gradient(80deg, $neutral-gray_01, rgba($primary_blue_01, .5));
         border-radius: 50%;
         display: inline-block;
         margin-inline-end: to-rem(7);
@@ -27,7 +28,7 @@
         transition: all .3s ease-in-out;
 
         &:hover {
-            background-image: linear-gradient(80deg, #647587, #6797d2);
+            background-image: linear-gradient(80deg, rgba($primary_blue_01, .5), $primary_blue_01);
         }
     }
 
@@ -38,9 +39,9 @@
 
         #cart-num {
             align-items: center;
-            background-color: #559555;
+            background-color: $secondary_red_01;
             border-radius: 50%;
-            color: #fff;
+            color: $neutral-white;
             font-size: to-rem(10);
             font-weight: bold;
             display: flex;
@@ -54,7 +55,7 @@
     }
 
     .user-menu {
-        background: #f1f1f1;
+        background: $neutral-white_04;
         border-radius: to-rem(7);
         display: flex;
         flex-wrap: wrap;
@@ -65,22 +66,22 @@
         top: 85%;
 
         & > a {
-            color: #353535;
+            color: $neutral-gray_03;
             flex: 0 0 80%;
             padding-block-end: to-rem(3);
             text-align: center;
             text-decoration: none;
 
             &:hover {
-                border-bottom: 1px solid #353535;
+                border-bottom: 1px solid $neutral-gray_03;
             }
         }
     }
 
     & .user-menu {
-        background: #fbfbfb;
+        background: $neutral-white_01;
         border-radius: to-rem(7);
-        box-shadow: to-rem(2) to-rem(1) to-rem(7) rgba(0, 0, 0, .2);
+        box-shadow: to-rem(2) to-rem(1) to-rem(7) rgba($neutral-black, .2);
         display: flex;
         flex-direction: column;
         padding: to-rem(8) to-rem(16);
@@ -89,7 +90,7 @@
         top: 100%;
 
         a {
-            color: #353535;
+            color: $neutral-gray_03;
             text-decoration: none;
         }
     }

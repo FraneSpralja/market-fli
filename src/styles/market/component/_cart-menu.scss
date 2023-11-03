@@ -2,8 +2,8 @@
 @use '../../utils/index' as *;
 
 .cart-menu {
-    background-color: #f9f9f9;
-    box-shadow: -1px 5px 4px #ccc;
+    background-color: $neutral-white_02;
+    box-shadow: -1px 5px 4px $neutral-gray_01;
     height: 100vh;
     position: absolute;
     right: 0;
@@ -15,8 +15,8 @@
     }
 
     &__card {
-        background: #fbfbfb;
-        border-bottom: 1px solid #f1f1f1;
+        background: $neutral-white_01;
+        border-bottom: 1px solid $neutral-white_04;
         border-radius: to-rem(4);
     }
 
@@ -31,8 +31,8 @@
 
     &__number {
         align-items: center;
-        background-color: #fff;
-        border: 1px solid #191919;
+        background-color: $neutral-white;
+        border: 1px solid $neutral-gray_04;
         border-radius: 50%;
         display: flex;
         font-size: to-rem(10);
@@ -66,15 +66,15 @@
             }
 
             &.btn-plus {
-                color: #38a5e4;
+                color: $primary_blue_01;
             }
 
             &.btn-minus {
-                color: #e4de38;
+                color: $secondary_yellow_01;
             }
 
             &.btn-delete {
-                color: #eb6464;
+                color: $secondary_red_01;
                 font-size: to-rem(14);
             }
         }
@@ -82,7 +82,7 @@
 
     &__checkout {
         @include fontSize('normal');
-        background: #6bef6b;
-        border: 1px solid #39a039
+        background: $secondary_yellow_01;
+        border: 1px solid $primary_blue_02;
     }
 }

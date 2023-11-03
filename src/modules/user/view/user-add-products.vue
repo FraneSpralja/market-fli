@@ -126,7 +126,7 @@
                 },
                 newProduct: async () => {
                     const category = {}
-                    const categories = tagging
+                    const categories = tagging.sort()
                                         .filter((item, index) => tagging
                                             .indexOf(item) === index )
                                             

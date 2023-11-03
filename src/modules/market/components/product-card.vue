@@ -17,7 +17,7 @@
             </div>
             <div class="product-card__body pt-3">
                 <div v-if="product.category" class="product-card__category mb-2 pb-2">
-                    <span v-for="(cat, i) in product.category" class="product-category px-3 py-1">
+                    <span v-for="(cat, i) in product.category" :key="cat" class="product-category px-2 me-2">
                         {{ cat }}
                     </span>
                 </div>
@@ -27,7 +27,7 @@
             </div>
             <div class="product-card__footer d-flex flex-wrap align-items-center justify-content-between">
                 <p class="product-card__price mb-0">
-                    ${{ product.price }}
+                    ${{ new Intl.NumberFormat().format(product.price) }}
                 </p>
                 <btn 
                 btn_icon="cart-shopping"
@@ -71,6 +71,7 @@ export default {
 
         return {
             userIsActive,
+            userLikes,
             showModal: () => {
                 emit('show-modal', props.product)
             },
@@ -96,7 +97,7 @@ export default {
             },
             likedProduct: computed(() => {
                 if(userIsActive) {
-
+                    userLikes.value.findIndex((id))
                 }
             })
         }
