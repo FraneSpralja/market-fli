@@ -1,8 +1,8 @@
 <template>
-    <div class="product-modal">
+    <div v-if="product" class="product-modal">
         <div class="product-modal__header">
             <h3 class="product-modal__title">
-                Product Title
+                {{ product.title }}
             </h3>
             <div class="product-modal__category">
                 <span>category</span>
@@ -23,20 +23,32 @@
 </template>
 
 <script>
+import { useStore } from 'vuex';
 import ActionBtn from '../components/action-btn.vue';
+import { ref } from 'vue';
 
 export default {
     components: {
         ActionBtn
     },
     props: {
-        product: {
-            type: Object,
+        id: {
+            type: String,
             required: true
         },
     },
     setup(props) {
+        const store = useStore()
+        const product = ref()
+        const getProduct = async() => {
+            product.value = await store.dispatch('market/productView', props.id)
+        }
 
+        getProduct()
+
+        return {
+            product
+        }
     }
 }
 

@@ -33,6 +33,10 @@
                 btn_icon="cart-shopping"
                 @click="addProductToCart"
                 />
+                <btn 
+                btn_icon="eye"
+                @click="goToProductPage"
+                />
                 <btn
                 v-if="userIsActive" 
                 btn_icon="heart"
@@ -47,7 +51,7 @@
 import btn from '../components/action-btn'
 import { useStore } from 'vuex';
 import { computed } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 
 export default {
     components: {
@@ -63,6 +67,7 @@ export default {
     setup(props, { emit }) {
         const store = useStore()
         const route = useRoute()
+        const router = useRouter()
 
         const userIsActive = computed(() => store.getters['user/isActive'])
         const userLikes = computed(() => {
@@ -99,7 +104,10 @@ export default {
                 if(userIsActive) {
                     userLikes.value.findIndex((id))
                 }
-            })
+            }),
+            goToProductPage: () => {{
+                router.push( { name: 'product-view', params: { id: props.product.id } } )
+            }}
         }
     }
 

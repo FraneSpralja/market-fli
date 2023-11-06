@@ -67,3 +67,11 @@ export const getRandomProducts = async({commit}) => {
         console.log(error)
     }
 }
+
+export const productView = async({commit}, id) => {
+    const itemRef = doc(db, 'products', `item_${id}`)
+    const product = await getDoc(itemRef)
+
+    commit('setProductView', product.data())
+    return product.data()
+}
