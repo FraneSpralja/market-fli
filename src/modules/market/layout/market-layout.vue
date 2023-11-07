@@ -45,6 +45,7 @@
             const product = ref()
 
             const userIsActive = computed(() => store.getters['user/isActive'])
+            const log_user = computed(() => store.getters['user/getUser'])
 
             const auctionCarousel = () => {
                 setTimeout(() => {
@@ -67,6 +68,7 @@
 
             onMounted(() => {
                 store.dispatch('user/activeUser')
+                store.dispatch('user/getUserLikes', log_user.id)
             })
 
             return {

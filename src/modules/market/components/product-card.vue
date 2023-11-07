@@ -25,9 +25,12 @@
                     {{  product.description.substring(0,135)  }}...
                 </p>
             </div>
-            <div class="product-card__footer d-flex flex-wrap align-items-center justify-content-between">
+            <div 
+            class="product-card__footer d-flex flex-wrap align-items-center justify-content-between"
+            :class="likedProduct !== -1 ? 'liked' : ''"
+            >
                 <p class="product-card__price mb-0">
-                    ${{ new Intl.NumberFormat().format(product.price) }}
+                    ${{ formatPrice(product.price) }}
                 </p>
                 <btn 
                 btn_icon="cart-shopping"
@@ -48,6 +51,7 @@
 </template>
 
 <script>
+import formatPrice from '@/helpers/priceFormat';
 import btn from '../components/action-btn'
 import { useStore } from 'vuex';
 import { computed } from 'vue';
@@ -70,13 +74,14 @@ export default {
         const router = useRouter()
 
         const userIsActive = computed(() => store.getters['user/isActive'])
-        const userLikes = computed(() => {
-            if(userIsActive) store.getters['user/getMyLikes']
-        })
+        const log_user = computed(() => store.getters['user/getUser'])
+        const likes = computed(() => store.getters['user/getMyLikes'])
 
         return {
             userIsActive,
-            userLikes,
+            log_user,
+            likes,
+            formatPrice,
             showModal: () => {
                 emit('show-modal', props.product)
             },
@@ -100,14 +105,8 @@ export default {
                     await store.dispatch('user/userLikeProduct', data)
                 }
             },
-            likedProduct: computed(() => {
-                if(userIsActive) {
-                    userLikes.value.findIndex((id))
-                }
-            }),
-            goToProductPage: () => {{
-                router.push( { name: 'product-view', params: { id: props.product.id } } )
-            }}
+            likedProduct: computed(() => likes.value.findIndex((item) => item.id === props.product.id)),
+            goToProductPage: () => router.push( { name: 'product-view', params: { id: props.product.id } } )
         }
     }
 

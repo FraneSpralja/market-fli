@@ -46,6 +46,13 @@
         font-weight: 600;
     }
 
+    &__footer.liked {
+        .btn-action:has(.fa-heart) {
+            background-color: $secondary_red_01;
+            color: darken($secondary_red_01, 10%);
+        }
+    }
+
     .btn-action {
         background-color: $secondary_yellow_01;
         border: 1px solid $primary_blue_01;

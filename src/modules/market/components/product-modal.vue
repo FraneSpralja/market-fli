@@ -43,7 +43,7 @@
         </div>
         <div class="product-modal__footer">
             <p class="product-modal__price">
-                ${{ new Intl.NumberFormat().format(product.price) }}
+                ${{ formatPrice(product.price) }}
             </p>
             <action-btn 
             btn_icon="cart-shopping"
@@ -54,9 +54,10 @@
 </template>
 
 <script>
+import formatPrice from '@/helpers/priceFormat';
 import ActionBtn from '../components/action-btn.vue';
 import { useStore } from 'vuex';
-import { computed, onMounted } from 'vue';
+import { computed } from 'vue';
 
 export default {
     components: {
@@ -74,6 +75,7 @@ export default {
 
         return {
             imagesLength,
+            formatPrice,
             closeModal: () => {
                 emit('close-modal')
             },

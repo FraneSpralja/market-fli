@@ -1,4 +1,3 @@
-import app from '@/firebase/config'
 import db from '@/helpers/db'
 import { collection, doc, getDocs, getDoc, deleteDoc } from 'firebase/firestore'
 

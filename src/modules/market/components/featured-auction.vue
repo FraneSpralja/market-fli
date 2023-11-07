@@ -9,7 +9,7 @@
                 class="featured-auction__card"
                 :class="i === 0 ? 'active' : ''"
                 :id="`card_${i}`"
-                @click="showModal(product)"
+                @click="goToProductPage(product.id)"
                 >
                     <div class="featured-auction__card-header">
                         <h5 class="featured-auction__card-title">
@@ -38,6 +38,7 @@
 </template>
 
 <script>
+import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 import { computed } from 'vue';
 
@@ -45,10 +46,12 @@ import { computed } from 'vue';
         emits: ['show-modal'],
         setup(props, {emit}) {
             const store = useStore()
+            const router = useRouter()
 
             return {
                 featured: computed(() => store.getters['market/featuredProducts']),
-                showModal: (item) => emit('show-modal', item)
+                showModal: (item) => emit('show-modal', item),
+                goToProductPage: (id) => router.push( { name: 'product-view', params: { id } } )
             }
         }
     }

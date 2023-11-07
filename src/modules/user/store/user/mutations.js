@@ -2,7 +2,16 @@
     
 // }
 
-export const userLogin = (state, user) => state.user = {...user}
+export const userLogin = (state, user) => {
+    const logUser = { ...state.user }
+    
+    if(logUser.accessToken) {
+        const { accessToken } = logUser
+        state.user = {...user, accessToken}
+    }
+
+    if(!logUser.accessToken) state.user = {...user}
+}
 
 export const userLogout = (state) => state.user = {}
 

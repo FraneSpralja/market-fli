@@ -3,7 +3,9 @@ import { ref } from 'vue';
     <nav id="navbar" class="navbar">
         <div class="container-fluid">
             <div class="navbar-logo">
-                Logo
+                <router-link :to="userIsActive && log_user.accessToken ? {name: 'category-list', query: { user: `user_${userIsActive}`, AT: log_user.accessToken }} : { name: 'category-list' }">
+                    Logo
+                </router-link>
             </div>
             <button
             class="navbar-cart"
@@ -90,6 +92,7 @@ import cartMenu from './cart-menu';
             const alert_txt = reactive({})
             const show_alert = ref(false)
 
+            const userIsActive = computed(() => store.getters['user/isActive'])
             const log_user = computed(() => store.getters['user/getUser'])
 
             return {
@@ -99,6 +102,7 @@ import cartMenu from './cart-menu';
                 alert_txt,
                 log_user,
                 router,
+                userIsActive,
                 getCart: computed(() => store.getters['market/loadCartProducts']),
                 totalItems: computed(() => store.getters['market/totalCartProducts']),
                 openUserMenu: () => userMenu.value = !userMenu.value,

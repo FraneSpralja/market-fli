@@ -1,8 +1,3 @@
-// export const myGetter = (state) => {
-//     return state.algo
-// }
-
-import { userActive } from "./mutations"
 
 export const getUser = (state) => state.user
 export const isActive = (state) => state.user_active

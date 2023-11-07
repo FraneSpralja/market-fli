@@ -1,19 +1,22 @@
 <template>
-    <div v-if="product" class="product-modal">
-        <div class="product-modal__header">
-            <h3 class="product-modal__title">
+    <div v-if="product" class="product-view">
+        <div class="product-view__header">
+            <h3 class="product-view__title">
                 {{ product.title }}
             </h3>
-            <div class="product-modal__category">
-                <span>category</span>
+            <div class="product-view__category">
+                <span v-for="(cat, i) in product.category" :key="i">{{ cat }}</span>
             </div>
         </div>
-        <div class="product-modal__body">
-            <p class="product-modal__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque culpa excepturi illo commodi aut harum recusandae in quo, nobis alias a nam consectetur atque ipsum ratione id, libero cupiditate itaque rerum saepe quidem dolore voluptate sed quaerat. Sed maxime aperiam odit, dignissimos eum quasi, suscipit consequatur praesentium, ab cupiditate facilis dolor rerum ut sit a. Laborum, architecto ipsum! Aspernatur nemo saepe quaerat nobis libero, voluptatibus cum sapiente ratione ut tempore harum odit, nihil quas ea?</p>
+        <div class="product-view__body">
+            <div class="product-view__images">
+                <img v-for="(img, i) in product.images" :key="i" :src="img" :alt="`${product.title} ${i}`" class="product-view__img">
+            </div>
+            <p class="product-view__description">{{ product.description }}</p>
         </div>
-        <div class="product-modal__footer">
-            <p class="product-modal__price">
-                $250.000
+        <div class="product-view__footer">
+            <p class="product-view__price">
+                ${{ formatPrice(product.price) }}
             </p>
             <action-btn 
             btn_text="Buy"
@@ -23,9 +26,11 @@
 </template>
 
 <script>
+import formatPrice from '@/helpers/priceFormat'
 import { useStore } from 'vuex';
 import ActionBtn from '../components/action-btn.vue';
-import { ref } from 'vue';
+import { ref, computed, watch } from 'vue';
+import { useRoute } from 'vue-router';
 
 export default {
     components: {
@@ -38,16 +43,24 @@ export default {
         },
     },
     setup(props) {
+        const route = useRoute()
         const store = useStore()
         const product = ref()
-        const getProduct = async() => {
-            product.value = await store.dispatch('market/productView', props.id)
+        const itemId = computed(() => route.params.id)
+
+        watch(itemId, (newVal) => {
+            getProduct(itemId.value)
+        })
+        const getProduct = async(id) => {
+            product.value = await store.dispatch('market/productView', id)
         }
 
-        getProduct()
+        getProduct(props.id)
+
 
         return {
-            product
+            product,
+            formatPrice,
         }
     }
 }
