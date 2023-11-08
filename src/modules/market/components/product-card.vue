@@ -54,7 +54,7 @@
 import formatPrice from '@/helpers/priceFormat';
 import btn from '../components/action-btn'
 import { useStore } from 'vuex';
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
 export default {
