@@ -4,7 +4,8 @@
     ></nav-bar>
 
     <div class="container">
-        <h1 class="main-title">portada inicial del market</h1>
+        <h1 class="main-title">Fli Market</h1>
+        <h3 class="mb-3 mb-lg-5">A space for collectors</h3>
         <div class="row">
 
             <div class="col-12">

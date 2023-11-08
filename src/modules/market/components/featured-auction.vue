@@ -1,7 +1,6 @@
 <template>
-    <div class="featured-auction">
+    <div class="featured-auction mb-3 mb-lg-5">
         <div class="container">
-            <h3 class="featured-auction__title">subastas destacada</h3>
             <div class="featured-auction__row flex-nowrap">
                 <div
                 v-for="(product, i) in featured"

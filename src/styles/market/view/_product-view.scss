@@ -1,0 +1,31 @@
+@use '../../utils/index' as *;
+@use '../../functions/rem' as *;
+
+.product-view {
+    display: grid;
+    grid-template-columns: 80% 20%;
+
+    &__main {
+
+        &-images {
+            &-btn {
+                cursor: pointer;
+                height: to-rem(25);
+    
+                &.btn-active {
+                    border: 1px solid $primary_blue_01;
+                    border-radius: to-rem(4);
+                    box-sizing: border-box;
+                    display: inline-block;
+                    padding: to-rem(3);
+                }
+            }
+        }
+    
+        &-img {
+            height: to-rem(250);
+        }
+    }
+
+
+}

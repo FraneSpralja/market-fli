@@ -49,6 +49,11 @@
             btn_icon="cart-shopping"
             @click="addProductToCart"
             />
+
+            <action-btn 
+            btn_icon="eye"
+            @click="goToProductPage"
+            />
         </div>
     </div>
 </template>
@@ -56,6 +61,7 @@
 <script>
 import formatPrice from '@/helpers/priceFormat';
 import ActionBtn from '../components/action-btn.vue';
+import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 import { computed } from 'vue';
 
@@ -71,6 +77,7 @@ export default {
     },
     setup(props, { emit }) {
         const store = useStore()
+        const router = useRouter()
         const imagesLength = computed(() => Object.values(props.product.images).length)
 
         return {
@@ -92,7 +99,8 @@ export default {
 
                     e.target.classList.add('pag-active')
                 }
-            }
+            },
+            goToProductPage: () => router.push( { name: 'product-view', params: { id: props.product.id } } )
         }
     }
 }

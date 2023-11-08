@@ -68,3 +68,22 @@ export const randomProducts = (state, data) => {
 export const setProductView = (state, product) => {
     state.product_view = product
 }
+
+export const addProductToCartFromView = (state, product) => {
+    const cart = [ ...state.cart ]
+    const cartItem = cart.filter(item => item.id === product.id)
+    
+    if(cartItem.length <= 0) {
+        const newProduct = { ...product }
+        newProduct.price = product.price * product.number
+        state.cart = [ newProduct, ...cart ]
+    } else {
+        const addProduct = { ...cartItem[0] }
+        addProduct.number = addProduct.number + product.number
+        addProduct.price = product.price * addProduct.number
+        const index = cart.findIndex(item => item.id === product.id)
+        const newCart = cart.filter(item => item.id !== product.id)
+        newCart.splice(index, 0, addProduct)
+        state.cart = [ ...newCart ]
+    }
+}

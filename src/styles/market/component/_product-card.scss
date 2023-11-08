@@ -58,6 +58,14 @@
         border: 1px solid $primary_blue_01;
         @include fontSize('normal');
         
+        &:first-of-type {
+            margin-inline-start: auto;
+        }
+
+        &:not(:last-of-type) {
+            margin-inline-end: to-rem(10);
+        }
+
         &:has(.fa-heart) {
             background-color: lighten($secondary_red_01, 10%);
             border-color: $secondary_red_01;
