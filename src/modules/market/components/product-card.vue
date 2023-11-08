@@ -17,7 +17,7 @@
             </div>
             <div class="product-card__body pt-3">
                 <div v-if="product.category" class="product-card__category mb-2 pb-2">
-                    <span v-for="(cat, i) in product.category" class="product-category px-3 py-1">
+                    <span v-for="(cat, i) in product.category" :key="cat" class="product-category px-2 me-2">
                         {{ cat }}
                     </span>
                 </div>
@@ -27,14 +27,18 @@
             </div>
             <div 
             class="product-card__footer d-flex flex-wrap align-items-center justify-content-between"
-            :class="user_like ? 'user-like' : ''"
+            :class="likedProduct !== -1 ? 'liked' : ''"
             >
                 <p class="product-card__price mb-0">
-                    ${{ product.price }}
+                    ${{ formatPrice(product.price) }}
                 </p>
                 <btn 
                 btn_icon="cart-shopping"
                 @click="addProductToCart"
+                />
+                <btn 
+                btn_icon="eye"
+                @click="goToProductPage"
                 />
                 <btn
                 v-if="userIsActive" 
@@ -47,10 +51,11 @@
 </template>
 
 <script>
+import formatPrice from '@/helpers/priceFormat';
 import btn from '../components/action-btn'
 import { useStore } from 'vuex';
-import { computed, ref, onMounted } from 'vue';
-import { useRoute } from 'vue-router';
+import { computed } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 
 export default {
     components: {
@@ -66,26 +71,19 @@ export default {
     setup(props, { emit }) {
         const store = useStore()
         const route = useRoute()
+        const router = useRouter()
 
         const user_like = ref(false)
 
         const userIsActive = computed(() => store.getters['user/isActive'])
-        const userLikes = (item_id) => {
-            if(userIsActive) {
-                const products = store.getters['user/getMyLikes']
-                const likeIndex = products.findIndex((item) => item.id === item_id)
-
-                if(likeIndex !== -1) user_like.value = true
-            }
-        }
-
-        onMounted(() => {
-            userLikes(props.product.id)
-        })
+        const log_user = computed(() => store.getters['user/getUser'])
+        const likes = computed(() => store.getters['user/getMyLikes'])
 
         return {
             userIsActive,
-            user_like,
+            log_user,
+            likes,
+            formatPrice,
             showModal: () => {
                 emit('show-modal', props.product)
             },
@@ -109,6 +107,8 @@ export default {
                     user_like.value = await store.dispatch('user/userLikeProduct', data)
                 }
             },
+            likedProduct: computed(() => likes.value.findIndex((item) => item.id === props.product.id)),
+            goToProductPage: () => router.push( { name: 'product-view', params: { id: props.product.id } } )
         }
     }
 

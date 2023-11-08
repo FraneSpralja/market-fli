@@ -64,3 +64,7 @@ export const randomProducts = (state, data) => {
     
     state.featured = [ ...featured ]
 }
+
+export const setProductView = (state, product) => {
+    state.product_view = product
+}

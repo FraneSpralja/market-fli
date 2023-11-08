@@ -4,4 +4,5 @@ export default () => ({
     totalPrice: null,
     categories: [],
     featured: [],
+    product_view: null
 })

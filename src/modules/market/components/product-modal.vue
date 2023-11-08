@@ -13,6 +13,7 @@
             </h3>
             <div class="product-modal__category col-12">
                 <span
+                class="px-2 me-2"
                 v-for="(category, i) in product.category"
                 >{{ category }}</span>
             </div>
@@ -31,7 +32,7 @@
                 :class="`pagination-btn-${i + 1}`"
                 :data-img="`img_${i + 1}`"
                 >
-                    <img :src="image" class="img_btn" :alt="`${product.title} img_${i + 1}`">
+                    <img :src="image" class="img_btn" :class="i === 'img_1' ? 'pag-active' : ''" :alt="`${product.title} img_${i + 1}`">
                 </div>
             </div>
         </div>
@@ -42,7 +43,7 @@
         </div>
         <div class="product-modal__footer">
             <p class="product-modal__price">
-                ${{ product.price }}
+                ${{ formatPrice(product.price) }}
             </p>
             <action-btn 
             btn_icon="cart-shopping"
@@ -53,9 +54,10 @@
 </template>
 
 <script>
+import formatPrice from '@/helpers/priceFormat';
 import ActionBtn from '../components/action-btn.vue';
 import { useStore } from 'vuex';
-import { computed, onMounted } from 'vue';
+import { computed } from 'vue';
 
 export default {
     components: {
@@ -73,6 +75,7 @@ export default {
 
         return {
             imagesLength,
+            formatPrice,
             closeModal: () => {
                 emit('close-modal')
             },
@@ -80,10 +83,15 @@ export default {
                 store.dispatch('market/addProductsToCarts', props.product.id)
             },
             carouselModal: (e) => {
-                const mainImg = document.querySelector('.main_img_modal')
-                const imgSrc = e.target.src
-                
-                mainImg.src = imgSrc
+                const pagAct = document.querySelector('.pag-active')
+                if(pagAct) {
+                    pagAct.classList.remove('pag-active')
+                    const mainImg = document.querySelector('.main_img_modal')
+                    const imgSrc = e.target.src
+                    mainImg.src = imgSrc
+
+                    e.target.classList.add('pag-active')
+                }
             }
         }
     }

@@ -1,9 +1,9 @@
+@use 'sass:color';
 @use '../../functions/rem' as *;
-@use '../../utils/breakpoints' as *;
-@use '../../utils/Tipography' as *;
+@use '../../utils/index' as *;
 
 .product-card {
-    border: 1px solid #efefef;
+    border: 1px solid $neutral-white_04;
     border-radius: to-rem(8);
     box-sizing: content-box;
     display: grid;
@@ -34,41 +34,48 @@
 
     .product-category {
         border-radius: to-rem(4);
-        background-color: #b8f3b8;
-        @include fontSize('x-small');
+        background-color: lighten($primary_blue_01, 60%);
+        color: $neutral-gray_03;
+        @include fontSize('xx-small');
         @include fontWeight('bold');
     }
 
     &__price {
-        color: #0c0c77;
+        color: $primary_blue_03;
         font-size: to-rem(25);
         font-weight: 600;
     }
 
+    &__footer.liked {
+        .btn-action:has(.fa-heart) {
+            background-color: $secondary_red_01;
+            color: darken($secondary_red_01, 10%);
+        }
+    }
+
     .btn-action {
-        background-color: #b7b7f6;
-        border: 1px solid #3737ec;
+        background-color: $secondary_yellow_01;
+        border: 1px solid $primary_blue_01;
         @include fontSize('normal');
         
         &:has(.fa-heart) {
-            background-color: #e67c7c;
-            border-color: #b55555;
-            color: #fff;
-            transition: all .3s ease-in;
+            background-color: lighten($secondary_red_01, 10%);
+            border-color: $secondary_red_01;
+            color: $neutral-white;
             
             &:hover {
-                background-color: #fff;
-                color: #e67c7c;
+                background-color: $secondary_red_01;
+                color: darken($secondary_red_01, 10%);
             }
         }
 
         &:hover {
-            background-color: #8888f1;
+            background-color: $secondary_yellow_02;
         }
     }
 
     &:has(.product-img__hover) {
-        border: 1px solid #076936;
+        border: 2px solid $primary_blue_01;
     }
 
     &__footer {

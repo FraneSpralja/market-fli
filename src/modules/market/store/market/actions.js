@@ -1,4 +1,3 @@
-import app from '@/firebase/config'
 import db from '@/helpers/db'
 import { collection, doc, getDocs, getDoc, deleteDoc } from 'firebase/firestore'
 
@@ -66,4 +65,12 @@ export const getRandomProducts = async({commit}) => {
     } catch (error) {
         console.log(error)
     }
+}
+
+export const productView = async({commit}, id) => {
+    const itemRef = doc(db, 'products', `item_${id}`)
+    const product = await getDoc(itemRef)
+
+    commit('setProductView', product.data())
+    return product.data()
 }

@@ -47,7 +47,7 @@ import { useRoute } from 'vue-router';
             const product = ref()
 
             const userIsActive = computed(() => store.getters['user/isActive'])
-            const user_id = route.query.user
+            const log_user = computed(() => store.getters['user/getUser'])
 
             const auctionCarousel = () => {
                 setTimeout(() => {
@@ -72,9 +72,9 @@ import { useRoute } from 'vue-router';
 
             products()
 
-            onMounted(async() => {
-                await store.dispatch('user/activeUser')
-                await userLikes(user_id)
+            onMounted(() => {
+                store.dispatch('user/activeUser')
+                store.dispatch('user/getUserLikes', log_user.id)
             })
 
             return {

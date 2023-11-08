@@ -31,15 +31,21 @@
     }
 
     &__card {
+        background-color: $secondary_yellow_01;
         border-radius: to-rem(7);
+        column-gap: to-rem(20);
         cursor: pointer;
         display: grid;
         grid-template-rows: 1fr to-rem(75) auto;
         min-width: calc(100% / 3);
         padding: to-rem(16);
         
+        @include Media('md') {
+            grid-template-columns: to-rem(220) 1fr;
+        }
+        
         &.active {
-            border: 1px solid #03036f;
+            border: 1px solid $primary_blue_02;
         }
 
         &-title {
@@ -49,29 +55,32 @@
 
             @include Media('md') {
                 text-align: start;
+                @include fontSize('lg')
             }
-        }
 
-        &-body {
-            align-items: center;
-            column-gap: to-rem(7);
-            display: grid;
-            grid-template-columns: to-rem(105) auto;
-            grid-template-rows: to-rem(75);
+            @include Media('xl') {
+                @include fontSize('xl')
+            }
         }
 
         &-img {
             text-align: center;
-            grid-column: 1 / 3;
 
             @include Media('md') {
+                align-self: center;
                 grid-column: 1 / 2;
+                grid-row: 1 / 4;
             }
 
             & > img {
+                border-radius: to-rem(7);
                 height: to-rem(75);
                 width: auto;
-                max-width: to-rem(110);
+
+                @include Media('md') {
+                    height: to-rem(120);
+                    max-width: to-rem(220);
+                }
             }
         }
 
@@ -85,12 +94,29 @@
             }
         }
 
-        &-description {
-            @include fontSize('small')
+        &-categories {
+            align-self: center;
+            text-align: center;
+            
+            @include Media('md') {
+                text-align: start;
+            }
+        }
+
+        &-category {
+            border-radius: to-rem(4);
+            background-color: lighten($primary_blue_01, 60%);
+            color: $neutral-gray_03;
+            @include fontSize('xx-small');
+            @include fontWeight('bold');
+
+            @include Media('md') {
+                @include fontSize('normal-bg');
+            }
         }
 
         &-price {
-            color: #03036f;
+            color: $primary_blue_02;
             margin-block-end: 0;
             @include fontSize('lg');
             @include fontWeight('bold');
@@ -113,16 +139,16 @@
         }
 
         &-bullets {
-            background-color: #bcbcbc;
+            background-color: $neutral-gray_02;
             border-radius: 50%;
-            box-shadow: 0 0 to-rem(4) rgba(0, 0, 0, .5);
+            box-shadow: 0 0 to-rem(4) rgba($neutral-black, .5);
             cursor: pointer;
             display: inline-block;
             height: to-rem(10);
             width: to-rem(10);
 
             &.active {
-                background-color: #03036f;
+                background-color: $primary_blue_02;
             }
         }
 
